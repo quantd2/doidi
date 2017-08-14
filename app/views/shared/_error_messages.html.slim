@@ -1,0 +1,10 @@
+- if resource.errors.any?
+  #error_explanation
+    .alert.alert-danger
+      |  Tờ đơn có: 
+      = resource.errors.size 
+      |  lỗi. 
+    ul
+      - resource.errors.full_messages.each do |msg|
+        li
+          = msg

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= full_title(yield(:title)) %></title>
+    <%= csrf_meta_tags %>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" /
+
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body>
+    <%= render 'layouts/header' %>
+    <div class="container" id="page">
+      <% flash.each do |key, value| %>
+        <% if key == "notice" %>
+          <% key = "info" %>
+        <% elsif key == "alert" %>
+          <% key = "danger" %>
+        <% end %>
+        <div class="alert alert-<%= key %>">
+          <%= value %>
+        </div>
+      <% end %>
+      <div class="row">
+        <div class="col-sm-9">
+          <%= yield %>
+        </div>
+        <div class="col-sm-3">
+          <%= render "welcome/side" %>
+        </div>
+      </div>
+      <%= render 'layouts/footer', cache: true %>
+      <%= debug(params) if Rails.env.development? %>
+    </div>
+  </body>
+</html>

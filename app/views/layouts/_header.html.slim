@@ -1,0 +1,38 @@
+header.navbar.navbar-inverse[role="navigation"]
+  .container
+    .navbar-header
+      = link_to "chon di", root_path, class: "navbar-brand"
+      = render "layouts/header_search"
+      button.navbar-toggle[type="button" data-toggle="collapse" data-target=".navbar-ex1-collapse"]
+        span.sr-only
+          | Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+    .collapse.navbar-collapse.navbar-ex1-collapse
+      ul.nav.navbar-nav.navbar-right
+        li
+          = link_to "Phản hồi", new_feedback_message_path
+        li
+          = link_to "Về chọn đi", welcome_about_path
+        - if signed_in?
+          - if admin?
+            li 
+              = link_to "admin", admin_path
+          li class="dropdown"
+            a href="#" class="dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
+              = current_user.name
+              span class="caret"
+            ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu"
+              li 
+                 = link_to "Đồ của tôi", user_items_path(user_id: current_user.id) 
+              li
+                 = link_to "Các bình luận của tôi", user_comments_path(user_id: current_user.id)
+              li class="divider"
+              li
+                = link_to "Thoát", destroy_user_session_path, method: :delete
+        - else
+          li
+            = link_to "Đăng ký", new_user_registration_path
+          li
+            = link_to "Đăng nhập", new_user_session_path

@@ -1,0 +1,9 @@
+- provide(:title, 'Những lựa chọn hằng ngày')
+- meta_description "Bạn xem những băn khoăn của người khác tại đây."
+h2.welcome-msg Nơi giúp bạn đỡ đau đầu vì quá nhiều lựa chọn
+ol.polls-list
+  - @items.each do |item|
+    - cache_if current_user, poll do
+      = render item
+      
+= paginate @items

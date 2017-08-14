@@ -1,0 +1,21 @@
+- provide(:title, 'Phản hồi')
+- meta_description "Gửi những thắc mắc của các bạn tại đây."
+.row
+  .col-sm-8
+    section#contact
+      h3 Cám ơn bạn đã dành thời gian cho chọn đi.
+      = simple_form_for @feedback_message, validate: true do |f|
+        = f.input :name, label: false, placeholder: "tên", validate: true
+        = f.input :email, label: false, placeholder: "hộp thư", validate: true
+        = f.input :content,:as => :text, label: false, placeholder: "lời nhắn", validate: true
+        div
+          = f.button :submit, 'Gửi', :class=> "btn btn-success btn-primary"
+  .col-sm-4
+    section#message
+      br
+      br
+      strong Vui lòng gửi lời nhắn về:
+      ul
+        li Lỗi về vận hành
+        li Các ý tưởng cho chọn đi
+        li Mọi thứ về chọn đi

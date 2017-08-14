@@ -1,0 +1,6 @@
+li.hot-poll
+  .hot-poll-description
+    .name
+      strong = link_to truncate(poll.name, length: 50), poll_path(poll.id), target: "_blank"
+    b.total Tổng phiếu bầu: #{poll.votes_summary}
+    hr

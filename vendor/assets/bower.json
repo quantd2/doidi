@@ -1,0 +1,8 @@
+{
+  "name": "dsl-generated-dependencies",
+  "dependencies": {
+    "bootstrap-sass-official": "latest",
+    "bootstrap-social": "latest",
+    "fancybox": "latest"
+  }
+}
