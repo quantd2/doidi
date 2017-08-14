@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20170814054911) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "ancestry"
+    t.index ["ancestry"], name: "index_categories_on_ancestry", using: :btree
     t.index ["item_id"], name: "index_categories_on_item_id", using: :btree
   end
 

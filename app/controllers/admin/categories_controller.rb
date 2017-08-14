@@ -11,16 +11,28 @@ class Admin::CategoriesController < ApplicationController
   end
 
   def new
-    @category = Category.new
+    @category = Category.new(:parent_id => params[:parent_id])
   end
 
   def create
-    @category = Category.new(category_params)
+    @category = Category.new category_params
     if @category.save
-      redirect_to @category, notice: 'Category was successfully created.'
-      # redirect_back fallback_location: :back, notice: "Xoá lời bình thành công."
+      redirect_to admin_categories_path, notice: 'Category was successfully created.'
     else
       render :new
+    end
+  end
+
+  def edit
+    @category = Category.find(params[:id])
+  end
+
+  def update
+    @category = Category.find(params[:id])
+    if @category.update_attributes(category_params)
+      redirect_to admin_categories_path, notice: 'Category was successfully edited.'
+    else
+      render 'edit'
     end
   end
 
@@ -33,6 +45,6 @@ class Admin::CategoriesController < ApplicationController
   private
 
   def category_params
-    params.require(:category).permit(:name)
+    params.require(:category).permit(:name, :parent_id)
   end
 end

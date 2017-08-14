@@ -1,0 +1,10 @@
+.category
+  span.name
+    = category.name 
+  span.actions
+    |   
+    = link_to "Create Sub", new_admin_category_path(parent_id: category)
+    |  | 
+    = link_to "Edit", edit_admin_category_path(category)
+    |  | 
+    = link_to "Destroy", admin_category_path(category), data: {confirm: "Are you sure?"}, :method => :delete

@@ -1,15 +1,16 @@
 h3 All Categories
-ol.categories-list
-  table class="table table-striped"
-    thead
-      tr
-        th Name
-        th Action
-    tbody
-    - @categories.each do |category|
-      tr
-        td = user.name
-        td = link_to "Delete", admin_category_path(category), method: :delete, data: { confirm: "Bạn có muốn xoá '#{category.name}' không?" }
+= nested_categories @categories.arrange(:order => :created_at)
+/ ol.categories-list
+/   table class="table table-striped"
+/     thead
+/       tr
+/         th Name
+/         th Action
+/     tbody
+/     - @categories.each do |category|
+/       tr
+/         td = category.name
+/         td = link_to "Delete", admin_category_path(category), method: :delete, data: { confirm: "Bạn có muốn xoá '#{category.name}' không?" }
 
 = link_to 'New Category', new_admin_category_path
 = paginate @categories
