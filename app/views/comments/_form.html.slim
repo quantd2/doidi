@@ -1,0 +1,10 @@
+h3 
+  | Bình luận
+= simple_form_for [@item, Comment.new], html: { id: @item.normalized_id }, remote: false, validate: true do |f|
+  = f.hidden_field :parent_id
+  = f.hidden_field :item_id
+  = f.input :body, placeholder: "Để lại lời bình", label: false, validate: true
+  = f.button :submit, value: "Gửi", class: "btn-success"
+hr
+ul.comment-list
+  = render partial: 'comments/comment', collection: @comments

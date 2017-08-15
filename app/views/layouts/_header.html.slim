@@ -1,7 +1,7 @@
 header.navbar.navbar-inverse[role="navigation"]
   .container
     .navbar-header
-      = link_to "chon di", root_path, class: "navbar-brand"
+      = link_to "doi di", root_path, class: "navbar-brand"
       = render "layouts/header_search"
       button.navbar-toggle[type="button" data-toggle="collapse" data-target=".navbar-ex1-collapse"]
         span.sr-only
@@ -14,7 +14,7 @@ header.navbar.navbar-inverse[role="navigation"]
         li
           = link_to "Phản hồi", new_feedback_message_path
         li
-          = link_to "Về chọn đi", welcome_about_path
+          = link_to "Về đổi đi", welcome_about_path
         - if signed_in?
           - if admin?
             li 

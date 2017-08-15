@@ -1,11 +1,14 @@
 = simple_form_for @item, validate: true do |f|
   - if @item.errors.any?
-    = render "shared/error_messages", resource: @poll
-  = f.input :name, label: false, placeholder: "Tên đồ", validate: true
-  = f.input :description, label: false, placeholder: "Miêu tả", validate: true
-  = f.collection_select :categorization_id, Category.order(:name),:id,:name, include_blank: true
-  / = f.select :categorization_id, options_for_select( @categories.all.map {|c| c.name, c.id} )
-  = f.file_field :image, id: "file_#{f.object.object_id}", style: "visibility: hidden;"
+    = render "shared/error_messages", resource: @item
+  fieldset
+    = f.input :name, label: false, placeholder: "Tên đồ", validate: true
+    = f.input :description, label: false, placeholder: "Miêu tả", validate: true
+    = f.collection_select(:category_id, Category.all, :id, :name,
+                                {include_blank: false, :include_hidden => false, :selected => @item.categorizations.map(&:id)},
+                                {:multiple => false, class:"form-control"})
+    = f.file_field :image, id: "file_#{f.object.object_id}", style: "visibility: hidden;"
     #previewImage
     a href="#" onclick="document.getElementById('file_#{f.object.object_id}').click(); return false;"
       i class="fa fa-picture-o fa-2x" aria-hidden="true"
+  = f.button :submit, "Submit", class: "btn-success"

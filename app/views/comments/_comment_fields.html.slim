@@ -1,0 +1,5 @@
+.comment_fields
+  / = f.hidden_field(parent_id: f.object.ancestry)
+  = f.input :body, placeholder: "Trả lời", label: false, validate: true
+  = f.button :submit, value: "Trả lời", class: "btn-success"
+  = link_to "Thoát", '#', class: "cancel btn btn-default input-button"

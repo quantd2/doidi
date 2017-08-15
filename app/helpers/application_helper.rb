@@ -17,14 +17,6 @@ module ApplicationHelper
     link_to(name, '#', class: "add_fields btn btn-primary input-button", data: {id: id, fields: fields.gsub("\n", "")})
   end
 
-  def link_to_reply(name, comment)
-    id = comment.id
-    fields = simple_form_for [comment, Comment.new], html: { id: comment.normalized_id}, validate: true, remote: signed_in? do |builder|
-      render("comments/comment_fields", f: builder)
-    end
-    link_to(name, '#', class: "add_comment", data: {id: id, fields: fields.gsub("\n", "")})
-  end
-
   def path_send *arg
     Rails.application.routes.url_helpers.send *arg
   end
@@ -35,5 +27,17 @@ module ApplicationHelper
 
   def meta_description(desc = nil)
     content_for :meta_description, desc
+  end
+
+  def owner? user
+    current_user and current_user.email == user.email
+  end
+
+  def link_to_reply(name, comment)
+    id = comment.id
+    fields = simple_form_for Comment.new(parent_id: id), html: { id: comment.normalized_id}, validate: true, remote: false do |builder|
+      render("comments/comment_fields", f: builder)
+    end
+    link_to(name, '#', class: "add_comment", data: {id: id, fields: fields.gsub("\n", "")})
   end
 end

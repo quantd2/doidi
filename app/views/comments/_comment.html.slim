@@ -1,0 +1,35 @@
+- cache comment do 
+  li
+    media id="show_comment_#{comment.id}"
+      .media-left
+        / = image_tag comment.user.image.thumb.url.gsub('/user','/form_user'), class: "media-object"
+        = image_tag comment.user.image.thumb.url, class: "media-object"
+      .media-body
+        .media-heading
+          - if comment.children.present?
+            span.expand
+              | [-] 
+          b.author 
+            = link_to comment.author.name, user_items_path(user_id: comment.author.id)
+          small.time
+            |  gửi  
+            = time_ago_in_words(comment.created_at) 
+            |  trước
+          - if comment_poll_name_display?
+            small.poll
+              |  ở 
+              = link_to Item.find_by_id(comment.item_id).name, item_path(Item.find_by_id(comment.item_id))
+
+        .entry = comment.body
+        .action
+          small.reply = link_to "Reply", new_comment_path(:parent_id => comment, :item => comment.item_id), :remote => true
+          - if owner? comment.user
+            small.delete
+              = link_to "Xoá", "#{}", class: "intent"
+              span.confirmation
+                | Bạn có chắc không? 
+                = link_to "Có", comment_path(comment), class: "confirm", method: :delete, remote: true
+                = link_to "Không", "#{}", class: "cancel"
+              
+    ul.comment-list.sub-comments
+      = render partial: 'comments/comment', collection: comment.children

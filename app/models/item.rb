@@ -1,9 +1,11 @@
 class Item < ApplicationRecord
+  include Common
+
   belongs_to :user
-  has_many :comments, as: :commentable, dependent: :destroy
+  has_many :comments
   has_many :categorizations
   has_many :categories, through: :categorizations
-
+  accepts_nested_attributes_for :categorizations
   mount_uploader :image, ImageUploader
 
   default_scope {order(:created_at => :desc)}
@@ -23,6 +25,8 @@ class Item < ApplicationRecord
 
   validates :name, length: { minimum: 1, maximum: 50 }, presence: true
   validates :description, length: { minimum: 0, maximum: 300 }
+
+  paginates_per 10
 
   def following?(other_item)
     relationships.find_by_followed_id(other_item.id)

@@ -1,0 +1,17 @@
+button.btn.btn-danger.delete-poll[data-toggle="modal" data-target="#Delmodal"]
+  |  Xoá
+#Delmodal.modal.fade[tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"]
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close[type="button" data-dismiss="modal" aria-hidden="true"]
+          | ×
+        h3#myModalLabel.modal-title
+          | Xác nhận
+      .modal-body
+        h4
+          | Bạn có muốn xoá đồ: #{item.name}?
+      .modal-footer
+        button.btn.btn-default[type="button" data-dismiss="modal"]
+          | Thoát
+        =  link_to "Xoá", item_path(item), class:"btn btn-danger", method: :delete

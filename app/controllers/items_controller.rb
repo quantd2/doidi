@@ -5,16 +5,16 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = @user.items.paginate(page: params[:page])
+    @items = @user.items.page params[:page]
   end
 
   def follower_items
-    @items = current_user.items.paginate(page: params[:page])
+    @items = current_user.items.page params[:page]
   end
 
   def followed_items
     @followed_items = []
-    @items = current_user.items.paginate(page: params[:page])
+    @items = current_user.items.page params[:page]
     @items.each do |item|
       @followed_items += item.followed_items
     end
@@ -25,25 +25,26 @@ class ItemsController < ApplicationController
   # GET /items/1.json
   def show
     @item = Item.find(params[:id])
+    @comments = @item.comments
   end
 
   # GET /items/new
   def new
     @item = current_user.items.new
-    @categories = Category.all
   end
 
   # GET /items/1/edit
   def edit
-    @categories = Category.all
+    @item = current_user.items.find params[:id]
   end
 
   # POST /items
   # POST /items.json
   def create
-    @item = current_user.polls.build(item_params)
-    @categories = Category.all
-    if @poll.save
+    @item = current_user.items.build(item_params.slice(:name, :description, :image))
+    # Categorization.create!(item_id: item_params[:id], category_id: item_params[:category_id])
+    if @item.save
+      Categorization.create!(item_id: @item.id, category_id: item_params[:category_id])
       redirect_to url_for(:controller => :welcome, :action => :index), notice: "Tạo thành công nhóm chọn."
     else
       render :new
@@ -80,12 +81,20 @@ class ItemsController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def correct_user
-    @poll = current_user.polls.find_by_id(params[:id])
-    redirect_to root_path if @poll.nil?
+    @item = current_user.items.find_by_id(params[:id])
+    redirect_to root_path if @item.nil?
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def item_params
-    params.require(:item).permit(:name, :description, :category_id, :image)
+    params.require(:item).permit(:name, :description, :image, :category_id)
+  end
+
+  def find_owner
+    @user = User.find(user_params)
+  end
+
+  def user_params
+    params.require(:user_id)
   end
 end

@@ -1,9 +1,23 @@
-- provide(:title, 'Những lựa chọn hằng ngày')
-- meta_description "Bạn xem những băn khoăn của người khác tại đây."
-h2.welcome-msg Nơi giúp bạn đỡ đau đầu vì quá nhiều lựa chọn
-ol.polls-list
-  - @items.each do |item|
-    - cache_if current_user, poll do
-      = render item
-      
+- provide(:title, 'Những món đồ hiện muốn đổi')
+- meta_description "Những món đồ cần đổi ở TP.Hồ Chí Minh."
+
+section.search-results
+  header
+    h1.h3
+      | Danh sách những đồ cần đổi
+  ol.list-group
+    - @items.each do |item|
+      li.list-group-item.clearfix
+        h3.pull-right
+          small.text-uppercase
+            | Đăng lúc 
+            = l item.created_at.to_date
+        h2.h3
+          = link_to item.name, item_path(item, parent_id: item)
+          / = item.description
+          small
+            = item.user.name
+        h4
+          = item.user.email
+          
 = paginate @items

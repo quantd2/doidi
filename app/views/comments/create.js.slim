@@ -1,0 +1,17 @@
+- if params[:comment_id]
+  |  $("#comment_#{@commentable.id}").closest("li").find("ul:first").prepend("
+  = escape_javascript(render partial: 'comments/comment', locals: { comment: @comment } )
+  | ");
+  | $("#comment_#{@commentable.id}").closest("li").find("ul:first").prepend('
+  i.fa.fa-spinner.fa-spin
+  | ');
+  | $("#comment_#{@commentable.id}").remove();
+
+- else
+  |  $("#poll_#{@commentable.id}").siblings("ul").prepend("
+  = escape_javascript(render partial: 'comments/comment', locals: { comment: @comment } )
+  | ");
+  | $("#poll_#{@commentable.id}").find("#comment_body").val('');
+  | $("#poll_#{@commentable.id}").siblings("ul").prepend('
+  i.fa.fa-spinner.fa-spin
+  | ');

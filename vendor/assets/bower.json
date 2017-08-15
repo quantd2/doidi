@@ -3,6 +3,7 @@
   "dependencies": {
     "bootstrap-sass-official": "latest",
     "bootstrap-social": "latest",
+    "components-font-awesome": "latest",
     "fancybox": "latest"
   }
 }

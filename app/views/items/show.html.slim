@@ -1,0 +1,17 @@
+- provide(:title, 'Thông tin về đồ')
+- meta_description "Những thông tin cụ thể về món đồ."
+.item
+  .media id="item_#{@item.id}"
+    .media-left
+      = link_to @item.image.large.url, 'data-fancybox': "gallery", class: 'media-object fancybox' do
+        = image_tag(@item.image.thumb.url)
+    .media-body
+      .media-heading 
+        = @item.name
+        = @item.description
+
+  - if owner? @item.user
+    .settings
+      = render "del_modal", item: @item
+  hr
+  = render "comments/form", cached: true

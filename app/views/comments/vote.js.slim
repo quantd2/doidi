@@ -1,0 +1,13 @@
+| $comment = $("#show_comment_#{params[:id]}");
+| $up = $comment.find(".up:first");
+| $down = $comment.find(".down:first");
+| $number = $comment.find(".number:first");
+
+- if params[:type] == "up"
+  | $up.attr('href','/comments/#{params[:id]}/vote?type=down');
+  | $up.attr('class','down');
+- else
+  | $down.attr('href','/comments/#{params[:id]}/vote?type=up');
+  | $down.attr('class','up');
+
+| $number.text("#{@comment.reputation_for(:votes).to_i} phiếu");

@@ -17,4 +17,6 @@
  *= require common
  *= require header
  *= require nested_categories
+ *= require components-font-awesome
+ *= require form
  */
