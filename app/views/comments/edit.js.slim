@@ -1,0 +1,4 @@
+| $("#show_comment_#{(@comment.id)}").replaceWith("
+= escape_javascript render("form")
+| ");
+| $("#show_comment_#{(@comment.id)}").find("#comment_body")[0].focus();

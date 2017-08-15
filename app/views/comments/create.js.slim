@@ -1,17 +1,16 @@
-- if params[:comment_id]
-  |  $("#comment_#{@commentable.id}").closest("li").find("ul:first").prepend("
-  = escape_javascript(render partial: 'comments/comment', locals: { comment: @comment } )
-  | ");
-  | $("#comment_#{@commentable.id}").closest("li").find("ul:first").prepend('
+- if @comment.parent_id.present?
+  | $("#show_comment_#{@comment.parent_id}").closest("li").find("ul:first").prepend('
   i.fa.fa-spinner.fa-spin
   | ');
-  | $("#comment_#{@commentable.id}").remove();
-
+  |  $("#show_comment_#{@comment.parent_id}").closest("li").find("ul:first").prepend("
+  = escape_javascript(render partial: 'comments/comment', locals: { comment: @comment } )
+  | ");
+  | $("#show_comment_#{@comment.parent_id}").find("form").remove();
 - else
-  |  $("#poll_#{@commentable.id}").siblings("ul").prepend("
-  = escape_javascript(render partial: 'comments/comment', locals: { comment: @comment } )
-  | ");
-  | $("#poll_#{@commentable.id}").find("#comment_body").val('');
-  | $("#poll_#{@commentable.id}").siblings("ul").prepend('
+  | $("[id*='item']").siblings("ul").prepend('
   i.fa.fa-spinner.fa-spin
   | ');
+  |  $("[id*='item']").siblings("ul").prepend("
+  = escape_javascript(render partial: 'comments/comment', locals: { comment: @comment } )
+  | ");
+  | $("[id*='item']").siblings("form").find("#comment_body").val('');

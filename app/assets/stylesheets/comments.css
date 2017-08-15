@@ -1,0 +1,54 @@
+[class="comment-list"] {
+  padding-left: 0px;
+}
+
+.comment-list {
+  list-style-type: none;
+}
+
+.expand {
+  color: #337ab7;
+  cursor: pointer;
+}
+
+[id^="show_comment"] img {
+  width: 48px;
+  height: 52px;
+}
+
+.time {
+  color: gray;
+}
+
+#new_comment .btn {
+  margin-top: 0px;
+}
+
+.cancel {
+  margin-left: 1em;
+}
+
+small.delete, small.edit {
+  margin-left: 1em;
+}
+
+.confirmation {
+  display: none;
+}
+
+.media-body {
+  position: relative;
+}
+
+.media-heading div {
+  text-align: left;
+}
+
+li.comment {
+  position: relative;
+}
+
+.comment-list .action.vote {
+  position: static;
+  margin-left: 1em;
+}

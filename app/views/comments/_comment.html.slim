@@ -2,7 +2,6 @@
   li
     media id="show_comment_#{comment.id}"
       .media-left
-        / = image_tag comment.user.image.thumb.url.gsub('/user','/form_user'), class: "media-object"
         = image_tag comment.user.image.thumb.url, class: "media-object"
       .media-body
         .media-heading
@@ -22,8 +21,10 @@
 
         .entry = comment.body
         .action
-          small.reply = link_to "Reply", new_comment_path(:parent_id => comment, :item => comment.item_id), :remote => true
+          small.reply = link_to_reply "Trả lời", comment
           - if owner? comment.user
+            small.edit
+              = link_to "Sửa", edit_comment_path(comment), :remote => true
             small.delete
               = link_to "Xoá", "#{}", class: "intent"
               span.confirmation

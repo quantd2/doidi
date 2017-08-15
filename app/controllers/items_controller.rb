@@ -25,7 +25,8 @@ class ItemsController < ApplicationController
   # GET /items/1.json
   def show
     @item = Item.find(params[:id])
-    @comments = @item.comments
+    @comment = Comment.new(:item => @item, :user => current_user)
+    @comments = @item.comments.where(ancestry: nil)
   end
 
   # GET /items/new

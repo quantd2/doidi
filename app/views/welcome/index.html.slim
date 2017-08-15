@@ -13,7 +13,7 @@ section.search-results
             | Đăng lúc 
             = l item.created_at.to_date
         h2.h3
-          = link_to item.name, item_path(item, parent_id: item)
+          = link_to item.name, item_path(item)
           / = item.description
           small
             = item.user.name

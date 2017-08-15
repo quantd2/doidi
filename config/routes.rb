@@ -15,9 +15,7 @@ Rails.application.routes.draw do
 
   resources :feedback_messages
   resources :categories
-  resources :comments do
-    resources :comments
-  end
+  resources :comments
 
   resources :user do
     resources :items, only: :index
@@ -26,7 +24,6 @@ Rails.application.routes.draw do
 
   resources :items do
     resources :relationships, only: [:new, :create, :destroy]
-    resources :comments
   end
 
   namespace :admin do

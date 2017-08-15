@@ -15,3 +15,6 @@
       = render "del_modal", item: @item
   hr
   = render "comments/form", cached: true
+  hr
+  ul.comment-list
+    = render @comments
