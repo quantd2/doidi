@@ -8,16 +8,19 @@ section.search-results
   ol.list-group
     - @items.each do |item|
       li.list-group-item.clearfix
-        h3.pull-right
-          small.text-uppercase
-            | Đăng lúc 
-            = l item.created_at.to_date
-        h2.h3
-          = link_to item.name, item_path(item)
-          / = item.description
-          small
-            = item.user.name
-        h4
-          = item.user.email
+        .media id="item_#{item.id}"
+          .media-left
+            = link_to item.image.large.url, 'data-fancybox': "gallery", class: 'media-object fancybox' do
+              = image_tag(item.image.thumb.url)
+          .media-body
+            .media-heading
+              b = link_to item.name, item_path(item)
+              p.description
+                = item.description
+              .owner
+                = item.user.name
+              small.dated.text-uppercase 
+                | Lúc 
+                = item.created_at.to_date
           
 = paginate @items

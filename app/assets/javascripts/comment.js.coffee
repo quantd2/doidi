@@ -14,10 +14,14 @@ toggle = ($exp, $col) ->
 
 addComment = ($el) ->
   $this = $el
+  $edit = $this.closest(".action").find(".edit")
+  $delete = $this.closest(".action").find(".delete")
   $data = $this.data('fields')
 
   $this.before($data)
   $this.hide()
+  $edit.hide()
+  $delete.hide()
   event.preventDefault()
   return
 
@@ -25,9 +29,13 @@ cancelComment = ($el) ->
   $this = $el
   $addComment = $this.closest('.reply').find('.add_comment')
   $commentForm = $this.closest('.reply').find('form')
+  $edit = $this.closest(".action").find(".edit")
+  $delete = $this.closest(".action").find(".delete")
 
   $addComment.show()
   $commentForm.remove()
+  $edit.show()
+  $delete.show()
   event.preventDefault()
   return
 
@@ -44,11 +52,11 @@ deleteCommentCancel = ($el) ->
 
 ready = ->
 
-  $('.reply').on 'click', '.add_comment', (event) ->
+  $(".action").on 'click', '.add_comment', (event) ->
     addComment($(this))
     return
 
-  $('.reply').on 'click', '.cancel', (event) ->
+  $('.action').on 'click', '.cancel', (event) ->
     cancelComment($(this))
     return
 

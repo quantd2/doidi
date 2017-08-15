@@ -1,0 +1,16 @@
+.media {
+  position: relative;
+}
+
+.dated {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  color: gray;
+}
+
+.owner {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
