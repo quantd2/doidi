@@ -1,0 +1,22 @@
+.list-group-item {
+
+  .dated {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    color: gray;
+  }
+
+  .description {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    margin-bottom: 0px;
+  }
+
+  .action {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+  }
+}

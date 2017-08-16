@@ -1,7 +1,5 @@
 class CommentsController < ApplicationController
-  # before_action :find_commentable, :authenticate_user!, except: [:show, :index]
   before_action :correct_user, only: [:destroy, :update]
-  # before_action :find_owner, only: :index
 
   def index
     @item.find_by_id(params[:item_id])

@@ -7,7 +7,7 @@ class AddTriggerConstraintRelationships < ActiveRecord::Migration[5.0]
       AS $$
 
       DECLARE
-        max_relationships_count INTEGER := 3;
+        max_relationships_count INTEGER := 1;
         following_count INTEGER := 0;
         followed_count INTEGER := 0;
 

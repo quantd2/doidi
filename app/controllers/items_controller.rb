@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
-  before_action :correct_user, only: :destroy
+  before_action :correct_user, only: [:destroy, :update]
   before_action :find_owner, only: :index
   # GET /items
   # GET /items.json
@@ -56,8 +56,8 @@ class ItemsController < ApplicationController
   # PATCH/PUT /items/1.json
   def update
     respond_to do |format|
-      if @item.update(item_params)
-        set_image
+      if @item.update(item_params.reject {|k,v| k == "category_id"})
+        Categorization.find_by_item_id(@item.id).update_attribute(:category_id, item_params[:category_id])
         format.html {
           redirect_to @item
           flash[:notice] = 'Item was successfully updated.' }

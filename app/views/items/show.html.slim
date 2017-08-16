@@ -1,18 +1,40 @@
 - provide(:title, 'Thông tin về đồ')
 - meta_description "Những thông tin cụ thể về món đồ."
 .item
-  .media id="item_#{@item.id}"
-    .media-left
-      = link_to @item.image.large.url, 'data-fancybox': "gallery", class: 'media-object fancybox' do
-        = image_tag(@item.image.thumb.url)
-    .media-body
-      .media-heading 
-        = @item.name
-        = @item.description
+  .image
+    = link_to @item.image.large.url, 'data-fancybox': "gallery", class: 'media-object fancybox' do
+      = image_tag(@item.image.medium.url)
+  .details
+    b = @item.name
+    p = @item.description
 
   - if owner? @item.user
-    .settings
+    .action
+      = link_to "Sửa", edit_item_path(@item), class: "btn btn-primary"
       = render "del_modal", item: @item
+      
+      .row
+        .col-md-6
+          article.panel.panel-primary
+            header.panel-heading
+              h4
+                |  Chủ sở hữu 
+            section.panel-body
+              .row
+                .col-md-6
+                  .form-group
+                    label.sr-only[for="name"]
+                      | name
+                    input.form-control[type="text" name="name" value="#{@item.user.name}"]
+                .col-md-6
+                  .form-group
+                    label.sr-only[for="phone"]
+                      | phone
+                    .input-group
+                      .input-group-addon
+                        i.glyphicon.glyphicon-phone
+                      input.form-control[type="text" name="phone" value="0933346442"]
+      
   hr
   = render "comments/form", cached: true
   hr

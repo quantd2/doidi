@@ -10,17 +10,20 @@ section.search-results
       li.list-group-item.clearfix
         .media id="item_#{item.id}"
           .media-left
-            = link_to item.image.large.url, 'data-fancybox': "gallery", class: 'media-object fancybox' do
-              = image_tag(item.image.thumb.url)
+            = link_to image_tag(item.image.thumb.url), item_path(item), class: 'media-object'
           .media-body
             .media-heading
               b = link_to item.name, item_path(item)
               p.description
-                = item.description
-              .owner
-                = item.user.name
-              small.dated.text-uppercase 
+                = truncate(item.description, length: 300)
+              small.dated
                 | Lúc 
                 = item.created_at.to_date
-          
+                |  bởi 
+                b.owner
+                  = link_to item.user.name, user_items_path(user_id: item.user.id)
+            .action
+              = link_to "Đổi", new_item_relationship_path(item), class: "btn btn-primary"
+            
+            
 = paginate @items
