@@ -1,0 +1,20 @@
+my-items
+  h4 Chọn một trong những món đồ của bạn để đổi.
+  ol.list-group
+    - @items.each do |item|
+      li.list-group-item.clearfix
+        .media id="item_#{item.id}"
+          .media-left
+            = link_to image_tag(item.image.thumb.url), item_path(item), class: 'media-object'
+          .media-body
+            .media-heading
+              b = link_to item.name, item_path(item)
+              p.description
+                = truncate(item.description, length: 300)
+            .action
+              = form_for [:item, Relationship.new(follower_id: item.id)] do |f|
+                = f.hidden_field :follower_id 
+                = f.submit "Chọn đổi", class: "btn btn-success"
+    
+    
+= paginate @items

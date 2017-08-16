@@ -1,26 +1,20 @@
 class RelationshipsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :set_target, only: [:create, :destroy]
 
   def new
-    set_item
-    @items = current_user.items
+    @items = current_user.items.page params[:page]
   end
 
   def create
-    @items = current_user.items
     @follower_item = Item.find(params[:relationship][:follower_id])
-    begin
-      @follower_item.follow!(@@item)
-    rescue Exception => e
-      flash[:alert] = 'the item has followed maximum 3 others.'
-    end
+    @follower_item.follow!(@target)
     redirect_to root_path
   end
 
   def destroy
-    set_item
-    @items = current_user.items
     @follower_item = Item.find(params[:id])
-    @follower_item.unfollow!(@@item)
+    @follower_item.unfollow!(@target)
     respond_to do |format|
       format.html {
         flash[:notice] = 'Unfollow successfully.'
@@ -31,8 +25,8 @@ class RelationshipsController < ApplicationController
 
   private
 
-  def set_item
-    @@item = Item.find(params[:item_id])
+  def set_target
+    @target = Item.find(params[:item_id])
   end
 
   def relationship_params

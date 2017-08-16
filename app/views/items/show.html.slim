@@ -1,9 +1,23 @@
 - provide(:title, 'Thông tin về đồ')
 - meta_description "Những thông tin cụ thể về món đồ."
-.item
-  .image
+.item-show
+  .host-image
     = link_to @item.image.large.url, 'data-fancybox': "gallery", class: 'media-object fancybox' do
       = image_tag(@item.image.medium.url)
+  - if @item.followed_items.present?
+    .status
+      i.fa.fa-long-arrow-right.fa-3x
+    .guest-image
+      = link_to (image_tag @item.followed_items.first.image.thumb.url), item_path(@item.followed_items.first)
+  - elsif @item.followers_items.present?
+    .status
+      i.fa.fa-long-arrow-left.fa-3x
+      = form_for [@item.followers_items.first, Relationship.new(follower_id: @item.id)] do |f|
+        = f.hidden_field :follower_id 
+        = f.submit "Đồng ý đổi", class: "btn btn-success"
+        = link_to "Không đồng ý", item_relationship_path(@item, @item.followers_items.first), method: :delete, data: { :confirm => "Really?" }, class: "btn btn-danger"
+    .guest-image
+      = link_to (image_tag @item.followers_items.first.image.thumb.url), item_path(@item.followers_items.first)
   .details
     b = @item.name
     p = @item.description

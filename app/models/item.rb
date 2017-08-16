@@ -34,17 +34,17 @@ class Item < ApplicationRecord
 
   def follow!(other_item)
     relationships.create!(followed_id: other_item.id)
-    reverse_relationships.create!(follower_id: other_item.id)
+    #reverse_relationships.create!(follower_id: other_item.id)
   end
 
   def unfollow!(other_item)
     relationships.find_by_followed_id(other_item.id).destroy
-    reverse_relationships.find_by_follower_id(other_item.id).destroy
+    #reverse_relationships.find_by_follower_id(other_item.id).destroy
   end
 
-  MESSAGE = "Đồ của bạn đã được đề nghị đổi!"
+  MESSAGE = "Món đồ của bạn đã được đề nghị đổi!"
 
-  def check_demand_limit relationship
+  def check_following_limit relationship
     if self.relationships.present?
       errors.add(:relationships, message: MESSAGE)
       raise Exception.new MESSAGE

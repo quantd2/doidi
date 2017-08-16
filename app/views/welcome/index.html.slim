@@ -4,7 +4,7 @@
 section.search-results
   header
     h1.h3
-      | Danh sách những đồ cần đổi
+      | Danh sách những món đồ cần đổi
   ol.list-group
     - @items.each do |item|
       li.list-group-item.clearfix
@@ -23,7 +23,12 @@ section.search-results
                 b.owner
                   = link_to item.user.name, user_items_path(user_id: item.user.id)
             .action
-              = link_to "Đổi", new_item_relationship_path(item), class: "btn btn-primary"
-            
+              - unless owner? item.user
+                = link_to "Muốn đổi", new_item_relationship_path(item), class: "btn btn-primary"
+            - if item.followed_items.present?
+              .status
+                i.fa.fa-exchange.fa-2x
+              .guest-image
+                = link_to (image_tag item.followed_items.first.image.thumb.url), item_path(item.followed_items.first)    
             
 = paginate @items
