@@ -19,7 +19,7 @@
       /       i.fa.fa-long-arrow-right.fa-3x
       /   .deny
       /     = link_to relationship_path(relationship: { granter_id: @item.demander_items.first }), class: "btn btn-danger", method: :delete, data: { :confirm => "Really?" } do
-      /       i.fa.fa-times.fa-3x
+            i.fa.fa-times.fa-3x
             
     .col-xs-5.guest align="right"
       - if @item.granter_items.present?
