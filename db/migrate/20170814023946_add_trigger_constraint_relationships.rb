@@ -8,29 +8,29 @@ class AddTriggerConstraintRelationships < ActiveRecord::Migration[5.0]
 
       DECLARE
         max_relationships_count INTEGER := 1;
-        following_count INTEGER := 0;
-        followed_count INTEGER := 0;
+        demanding_count INTEGER := 0;
+        granter_count INTEGER := 0;
 
       BEGIN
 
         LOCK TABLE relationships IN EXCLUSIVE MODE;
 
-        SELECT INTO following_count COUNT(*)
+        SELECT INTO demanding_count COUNT(*)
         FROM relationships
-        WHERE follower_id = NEW.follower_id;
-        RAISE NOTICE 'following_count is currently %', following_count;
+        WHERE demander_id = NEW.demander_id;
+        RAISE NOTICE 'demanding_count is currently %', demanding_count;
 
-        SELECT INTO followed_count COUNT(*)
+        SELECT INTO granter_count COUNT(*)
         FROM relationships
-        WHERE followed_id = NEW.followed_id;
-        RAISE NOTICE 'followed_count is currently %', followed_count;
+        WHERE granter_id = NEW.granter_id;
+        RAISE NOTICE 'granter_count is currently %', granter_count;
 
-        IF following_count > max_relationships_count THEN
-          RAISE EXCEPTION 'Cannot insert more than % following for each item.', max_relationships_count;
+        IF demanding_count > max_relationships_count THEN
+          RAISE EXCEPTION 'Cannot insert more than % demanding for each item.', max_relationships_count;
         END IF;
 
-        IF followed_count > max_relationships_count THEN
-          RAISE EXCEPTION 'Cannot insert more than % followed for each item.', max_relationships_count;
+        IF granter_count > max_relationships_count THEN
+          RAISE EXCEPTION 'Cannot insert more than % granter for each item.', max_relationships_count;
         END IF;
 
         RETURN NEW;

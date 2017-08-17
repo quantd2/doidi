@@ -12,9 +12,9 @@ my-items
               p.description
                 = truncate(item.description, length: 300)
             .action
-              = form_for [:item, Relationship.new(follower_id: item.id)] do |f|
-                = f.hidden_field :follower_id 
+              = form_for Relationship.new(demander_id: item.id) do |f|
+                = f.hidden_field :demander_id
+                = f.hidden_field :granter_id, value: params[:granter_id]
                 = f.submit "Chọn đổi", class: "btn btn-success"
-    
     
 = paginate @items

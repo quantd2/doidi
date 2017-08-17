@@ -1,53 +1,77 @@
 - provide(:title, 'Thông tin về đồ')
 - meta_description "Những thông tin cụ thể về món đồ."
 .item-show
-  .host-image
-    = link_to @item.image.large.url, 'data-fancybox': "gallery", class: 'media-object fancybox' do
-      = image_tag(@item.image.medium.url)
-  - if @item.followed_items.present?
-    .status
-      i.fa.fa-long-arrow-right.fa-3x
-    .guest-image
-      = link_to (image_tag @item.followed_items.first.image.thumb.url), item_path(@item.followed_items.first)
-  - elsif @item.followers_items.present?
-    .status
-      i.fa.fa-long-arrow-left.fa-3x
-      = form_for [@item.followers_items.first, Relationship.new(follower_id: @item.id)] do |f|
-        = f.hidden_field :follower_id 
-        = f.submit "Đồng ý đổi", class: "btn btn-success"
-        = link_to "Không đồng ý", item_relationship_path(@item, @item.followers_items.first), method: :delete, data: { :confirm => "Really?" }, class: "btn btn-danger"
-    .guest-image
-      = link_to (image_tag @item.followers_items.first.image.thumb.url), item_path(@item.followers_items.first)
+  .row
+    .col-xs-5.host
+      = link_to @item.image.large.url, 'data-fancybox': "gallery", class: 'fancybox' do
+        = image_tag(@item.image.medium.url, class: "img-responsive")
+        
+    .col-xs-2.status align="center"
+      = status
+      / - if @item.granter_items.present?
+      /   i.fa.fa-long-arrow-right.fa-3x
+      / - elsif @item.demander_items.present?
+      /   i.fa.fa-long-arrow-left.fa-3x
+      /   = form_for Relationship.new(demander_id: @item.id), url: {controller: 'relationships', action: "accept"} do |f|
+      /     = f.hidden_field :demander_id 
+      /     = f.hidden_field :granter_id, value: @item.demander_items.first.id
+      /     = button_tag "", type: "submit", class: "btn btn-success accept" do
+      /       i.fa.fa-long-arrow-right.fa-3x
+      /   .deny
+      /     = link_to relationship_path(relationship: { granter_id: @item.demander_items.first }), class: "btn btn-danger", method: :delete, data: { :confirm => "Really?" } do
+      /       i.fa.fa-times.fa-3x
+            
+    .col-xs-5.guest align="right"
+      - if @item.granter_items.present?
+        = link_to (image_tag @item.granter_items.first.image.medium.url, class: "img-responsive"), item_path(@item.granter_items.first)
+      - if @item.demander_items.present?
+        = link_to (image_tag @item.demander_items.first.image.medium.url, class: "img-responsive"), item_path(@item.demander_items.first)
+      / - elsif @item.granter_items.present?
+        
+      
+    / - elsif @item.demander_items.present?
+    /   .status
+    /     i.fa.fa-long-arrow-left.fa-3x
+    /     = form_for [@item.demander_items.first, Relationship.new(demander_id: @item.id)] do |f|
+    /       = f.hidden_field :demander_id 
+    /       = button_tag "", type: "submit", class: "btn btn-success accept" do
+    /         i.fa.fa-long-arrow-right.fa-3x
+    /       .deny
+    /         = link_to item_relationship_path(@item, @item.demander_items.first), class: "btn btn-danger", method: :delete, data: { :confirm => "Really?" } do
+    /           i.fa.fa-times.fa-3x
+    / 
+    / .guest-image
+    /   = link_to (image_tag @item.demander_items.first.image.medium.url, class: "img-responsive"), item_path(@item.demander_items.first)
   .details
     b = @item.name
     p = @item.description
 
-  - if owner? @item.user
-    .action
-      = link_to "Sửa", edit_item_path(@item), class: "btn btn-primary"
-      = render "del_modal", item: @item
-      
-      .row
-        .col-md-6
-          article.panel.panel-primary
-            header.panel-heading
-              h4
-                |  Chủ sở hữu 
-            section.panel-body
-              .row
-                .col-md-6
-                  .form-group
-                    label.sr-only[for="name"]
-                      | name
-                    input.form-control[type="text" name="name" value="#{@item.user.name}"]
-                .col-md-6
-                  .form-group
-                    label.sr-only[for="phone"]
-                      | phone
-                    .input-group
-                      .input-group-addon
-                        i.glyphicon.glyphicon-phone
-                      input.form-control[type="text" name="phone" value="0933346442"]
+  / - if owner? @item.user
+  /   .action
+  /     = link_to "Sửa", edit_item_path(@item), class: "btn btn-primary"
+  /     = render "del_modal", item: @item
+  /     
+  /     .row
+  /       .col-md-6
+  /         article.panel.panel-primary
+  /           header.panel-heading
+  /             h4
+  /               |  Chủ sở hữu 
+  /           section.panel-body
+  /             .row
+  /               .col-md-6
+  /                 .form-group
+  /                   label.sr-only[for="name"]
+  /                     | name
+  /                   input.form-control[type="text" name="name" value="#{@item.user.name}"]
+  /               .col-md-6
+  /                 .form-group
+  /                   label.sr-only[for="phone"]
+  /                     | phone
+  /                   .input-group
+  /                     .input-group-addon
+  /                       i.glyphicon.glyphicon-phone
+  /                     input.form-control[type="text" name="phone" value="0933346442"]
       
   hr
   = render "comments/form", cached: true

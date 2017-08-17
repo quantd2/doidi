@@ -1,7 +1,9 @@
 class Relationship < ApplicationRecord
-  belongs_to :follower, class_name: "Item"
-  belongs_to :followed, class_name: "Item"
+  enum status: [:pending, :accepted]
 
-  validates :follower_id, presence: true
-  validates :followed_id, presence: true
+  belongs_to :demander, class_name: "Item"
+  belongs_to :granter, class_name: "Item"
+
+  validates :demander_id, presence: true
+  validates :granter_id, presence: true
 end

@@ -1,20 +1,12 @@
 .item-show {
 
-  .host-image {
-    float: left;
+  .fa-3x {
+    font-size: 2.3em;
   }
-
-  .guest-image {
-    float: right;
-  }
-
-  .details {
-    clear: both;
-  }
-
-  .status {
-    position: absolute;
-    top: 3em;
-    left: 50%;
+  .deny {
+    margin-top: 5px;
+    .btn{
+      border-radius: 100%;
+    }
   }
 }

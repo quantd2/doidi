@@ -24,11 +24,11 @@ section.search-results
                   = link_to item.user.name, user_items_path(user_id: item.user.id)
             .action
               - unless owner? item.user
-                = link_to "Muốn đổi", new_item_relationship_path(item), class: "btn btn-primary"
-            - if item.followed_items.present?
+                = link_to "Muốn đổi", new_relationship_path(granter_id: item.id), class: "btn btn-primary"
+            - if item.granter_items.present?
               .status
                 i.fa.fa-exchange.fa-2x
               .guest-image
-                = link_to (image_tag item.followed_items.first.image.thumb.url), item_path(item.followed_items.first)    
+                = link_to (image_tag item.granter_items.first.image.thumb.url), item_path(item.granter_items.first)    
             
 = paginate @items

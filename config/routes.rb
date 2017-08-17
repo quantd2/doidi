@@ -16,14 +16,17 @@ Rails.application.routes.draw do
   resources :feedback_messages
   resources :categories
   resources :comments
+  resources :items
 
   resources :user do
     resources :items, only: :index
     resources :comments, only: :index
   end
 
-  resources :items do
-    resources :relationships, only: [:new, :create, :destroy]
+  resources :relationships, only: [:new, :create, :destroy] do
+    member do
+      post :accept
+    end
   end
 
   namespace :admin do

@@ -8,17 +8,17 @@ class ItemsController < ApplicationController
     @items = @user.items.page params[:page]
   end
 
-  def follower_items
+  def demander_items
     @items = current_user.items.page params[:page]
   end
 
-  def followed_items
-    @followed_items = []
+  def granter_items
+    @granter_items = []
     @items = current_user.items.page params[:page]
     @items.each do |item|
-      @followed_items += item.followed_items
+      @granter_items += item.granter_items
     end
-    @followed_items
+    @granter_items
   end
 
   # GET /items/1

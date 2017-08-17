@@ -293,7 +293,7 @@ jQuery.extend( {
 			name = finalPropName( origName );
 		}
 
-		// Try prefixed name followed by the unprefixed name
+		// Try prefixed name granter by the unprefixed name
 		hooks = jQuery.cssHooks[ name ] || jQuery.cssHooks[ origName ];
 
 		// If a hook was provided get the computed value from there
