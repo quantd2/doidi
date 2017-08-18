@@ -1,12 +1,12 @@
 class RelationshipsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_target, only: [:create, :destroy, :accept]
+  before_action :set_target, only: [:demand, :deny, :accept, :withhold]
 
   def new
     @items = current_user.items.page params[:page]
   end
 
-  def create
+  def demand
     @demander_item = Item.find(relationship_params[:demander_id])
     @demander_item.demand!(@target)
     redirect_to root_path
@@ -15,15 +15,31 @@ class RelationshipsController < ApplicationController
   def accept
     @demander_item = Item.find(relationship_params[:demander_id])
     @demander_item.accept!(@target)
+    respond_to do |format|
+      format.html {
+        flash[:notice] = 'accpet successfully.'
+        redirect_to root_path
+      }
+    end
   end
 
-  def destroy
+  def withhold
+    @target.withhold!
+    respond_to do |format|
+      format.html {
+        flash[:notice] = 'khong doi nua.'
+        redirect_to item_path(@target)
+      }
+    end
+  end
+
+  def deny
     @demander_item = Item.find(params[:id])
     @demander_item.deny!(@target)
     respond_to do |format|
       format.html {
-        flash[:notice] = 'Unfollow successfully.'
-        redirect_to :back
+        flash[:notice] = 'tu choi.'
+        redirect_to root_path
       }
     end
   end

@@ -23,11 +23,12 @@ Rails.application.routes.draw do
     resources :comments, only: :index
   end
 
-  resources :relationships, only: [:new, :create, :destroy] do
-    member do
-      post :accept
-    end
-  end
+  resources :relationships, only: :new
+
+  match 'relationship', to: 'relationships#demand', via: :post
+  match 'accept_relationship', to: 'relationships#accept', via: :post
+  match 'deny_relationship', to: 'relationships#deny', via: :delete
+  match 'withhold_relationship', to: 'relationships#withhold', via: :delete
 
   namespace :admin do
     get '', to: 'dashboard#index', as: '/'

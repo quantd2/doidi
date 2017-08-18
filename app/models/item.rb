@@ -42,14 +42,12 @@ class Item < ApplicationRecord
     reverse_relationships.find_by_demander_id(other_item.id).update_attribute(:status, 1)
   end
 
-  def withhold!(other_item)
-    relationships.find_by_granter_id(other_item.id).destroy
-    #reverse_relationships.find_by_demander_id(other_item.id).destroy
+  def withhold!
+    relationships.find_by_demander_id(self.id).destroy
   end
 
   def deny!(other_item)
     reverse_relationships.find_by_demander_id(other_item.id).destroy
-    #reverse_relationships.find_by_demander_id(other_item.id).destroy
   end
 
   MESSAGE = "Món đồ của bạn đã được đề nghị đổi!"

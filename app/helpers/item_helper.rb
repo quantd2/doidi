@@ -5,17 +5,15 @@ module ItemHelper
 
   def status
     if @item.relationships.present?
-      if @item.relationships.first.status == "accept"
-        content_tag(:i, "", class: "fa fa-exchange fa-3x")
+      if @item.relationships.first.status == "accepted"
+        content_tag(:i, "", class: "fa fa-exchange")
       else
-        content_tag :i, "", class: "fa fa-long-arrow-right fa-3x"
+        # content_tag(:i, "", class: "fa fa-long-arrow-right") +
+        available_action
       end
     elsif @item.reverse_relationships.present?
-      form_for Relationship.new(demander_id: @item.id), url: {controller: 'relationships', action: "accept"} do |f|
-        hidden_field :demander_id, value: 1
-        hidden_field :granter_id, value: @item.demander_items.first.id
-        button_tag "", type: "submit", class: "btn btn-success accept"
-      end
+      # content_tag(:i, "", class: "fa fa-long-arrow-left") +
+      available_action
     else
       content_tag(:p, "nothing")
     end
@@ -23,22 +21,33 @@ module ItemHelper
 
   def available_action
     if owner? @item.user
-      if @item.demander_items.present?
-        tag.form class: "new_relationship",
-                 id: "new_relationship",
-                 action: "relationship/#{@item.id}/accept",
-                 "accept-charset": "UTF-8",
-                 method: "post"
+      content_tag(:div, "", class: "action") do
+        if @item.demander_items.present?
+          content_tag(:div, "", class: "fa fa-long-arrow-left") +
+          form_for(Relationship.new, url: {controller: 'relationships', action: "accept"}) do |f|
+            capture do
+              concat (f.hidden_field(:demander_id, value: @item.id))
+              concat (f.hidden_field(:granter_id, value: @item.demander_items.first.id[0]))
+            end +
+            button_tag("", type: "submit", class: "btn btn-success accept") do
+              content_tag(:i, "", class: "fa fa-long-arrow-right")
+            end
+          end +
+          link_to(content_tag(:i, "", class: "fa fa-times"),
+                              deny_relationship_path(id: @item.id, relationship: { granter_id: @item.demander_item_ids[0] }),
+                              class: "deny btn btn-danger",
+                              method: :delete,
+                              data: { :confirm => "Really?" })
+        elsif @item.granter_items.present?
+          content_tag(:i, "", class: "fa fa-long-arrow-right") +
+          tag(:br) +
+          link_to(content_tag(:i, "", class: "withhold fa fa-times"),
+                              withhold_relationship_path(relationship: { granter_id: @item.id }),
+                              class: "withhold btn btn-danger",
+                              method: :delete,
+                              data: { :confirm => "Really?" })
+        end
       end
     end
-        #  = form_for Relationship.new(demander_id: @item.id), url: {controller: 'relationships', action: "accept"} do |f|
-        #    = f.hidden_field :demander_id
-        #    = f.hidden_field :granter_id, value: @item.demander_items.first.id
-        #    = button_tag "", type: "submit", class: "btn btn-success accept" do
-        #      i.fa.fa-long-arrow-right.fa-3x
-        #  .deny
-        #    = link_to relationship_path(relationship: { granter_id: @item.demander_items.first }), class: "btn btn-danger", method: :delete, data: { :confirm => "Really?" } do
-        #      i.fa.fa-times.fa-3x
-
   end
 end

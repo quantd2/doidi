@@ -8,40 +8,11 @@
         
     .col-xs-2.status align="center"
       = status
-      / - if @item.granter_items.present?
-      /   i.fa.fa-long-arrow-right.fa-3x
-      / - elsif @item.demander_items.present?
-      /   i.fa.fa-long-arrow-left.fa-3x
-      /   = form_for Relationship.new(demander_id: @item.id), url: {controller: 'relationships', action: "accept"} do |f|
-      /     = f.hidden_field :demander_id 
-      /     = f.hidden_field :granter_id, value: @item.demander_items.first.id
-      /     = button_tag "", type: "submit", class: "btn btn-success accept" do
-      /       i.fa.fa-long-arrow-right.fa-3x
-      /   .deny
-      /     = link_to relationship_path(relationship: { granter_id: @item.demander_items.first }), class: "btn btn-danger", method: :delete, data: { :confirm => "Really?" } do
-            i.fa.fa-times.fa-3x
-            
     .col-xs-5.guest align="right"
       - if @item.granter_items.present?
         = link_to (image_tag @item.granter_items.first.image.medium.url, class: "img-responsive"), item_path(@item.granter_items.first)
-      - if @item.demander_items.present?
+      - elsif @item.demander_items.present?
         = link_to (image_tag @item.demander_items.first.image.medium.url, class: "img-responsive"), item_path(@item.demander_items.first)
-      / - elsif @item.granter_items.present?
-        
-      
-    / - elsif @item.demander_items.present?
-    /   .status
-    /     i.fa.fa-long-arrow-left.fa-3x
-    /     = form_for [@item.demander_items.first, Relationship.new(demander_id: @item.id)] do |f|
-    /       = f.hidden_field :demander_id 
-    /       = button_tag "", type: "submit", class: "btn btn-success accept" do
-    /         i.fa.fa-long-arrow-right.fa-3x
-    /       .deny
-    /         = link_to item_relationship_path(@item, @item.demander_items.first), class: "btn btn-danger", method: :delete, data: { :confirm => "Really?" } do
-    /           i.fa.fa-times.fa-3x
-    / 
-    / .guest-image
-    /   = link_to (image_tag @item.demander_items.first.image.medium.url, class: "img-responsive"), item_path(@item.demander_items.first)
   .details
     b = @item.name
     p = @item.description
