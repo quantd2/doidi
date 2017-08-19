@@ -1,0 +1,10 @@
+- if size == "thumb"
+  - if item.granter_items.present?
+    = link_to (image_tag item.granter_items.first.image.thumb.url, class: "img-responsive"), item_path(item.granter_items.first)
+  - elsif item.demander_items.present?
+    = link_to (image_tag item.demander_items.first.image.thumb.url, class: "img-responsive"), item_path(item.demander_items.first)
+- elsif size == "medium"
+  - if item.granter_items.present?
+    = link_to (image_tag item.granter_items.first.image.medium.url, class: "img-responsive"), item_path(item.granter_items.first)
+  - elsif item.demander_items.present?
+    = link_to (image_tag item.demander_items.first.image.medium.url, class: "img-responsive"), item_path(item.demander_items.first)

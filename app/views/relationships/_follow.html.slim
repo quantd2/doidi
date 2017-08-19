@@ -9,8 +9,6 @@ my-items
           .media-body
             .media-heading
               b = link_to item.name, item_path(item)
-              p.description
-                = truncate(item.description, length: 300)
             .action
               = form_for Relationship.new, url: { action: "demand" } do |f|
                 = f.hidden_field :demander_id, value: item.id

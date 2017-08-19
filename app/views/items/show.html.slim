@@ -7,12 +7,10 @@
         = image_tag(@item.image.medium.url, class: "img-responsive")
         
     .col-xs-2.status align="center"
-      = status
-    .col-xs-5.guest align="right"
-      - if @item.granter_items.present?
-        = link_to (image_tag @item.granter_items.first.image.medium.url, class: "img-responsive"), item_path(@item.granter_items.first)
-      - elsif @item.demander_items.present?
-        = link_to (image_tag @item.demander_items.first.image.medium.url, class: "img-responsive"), item_path(@item.demander_items.first)
+      = status @item
+    .col-xs-5.guest-image align="right"
+      = render partial: "items/guest_image", locals: {size: "medium", item: @item}
+
   .details
     b = @item.name
     p = @item.description
