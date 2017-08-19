@@ -34,12 +34,11 @@ class Item < ApplicationRecord
 
   def demand!(other_item)
     relationships.create!(granter_id: other_item.id)
-    #reverse_relationships.create!(demander_id: other_item.id)
   end
 
   def accept!(other_item)
     relationships.create!(granter_id: other_item.id, status: 1)
-    reverse_relationships.find_by_demander_id(other_item.id).update_attribute(:status, 1)
+    reverse_relationships.find_by_granter_id(self.id).update_attribute(:status, 1)
   end
 
   def withhold!

@@ -1,9 +1,13 @@
 class RelationshipsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_target, only: [:demand, :deny, :accept, :withhold]
+  before_action :set_target
 
   def new
-    @items = current_user.items.page params[:page]
+    @items = current_user.items.joins(:categorizations).where('items.id NOT IN (SELECT granter_id FROM relationships)
+                                      AND items.id NOT IN (SELECT demander_id FROM relationships)')
+                                      .where('categorizations.category_id = ?', @target.category_ids[0])
+                                      .page params[:page]
+
   end
 
   def demand
@@ -14,11 +18,11 @@ class RelationshipsController < ApplicationController
 
   def accept
     @demander_item = Item.find(relationship_params[:demander_id])
-    @demander_item.accept!(@target)
+    @target.accept!(@demander_item)
     respond_to do |format|
       format.html {
-        flash[:notice] = 'accpet successfully.'
-        redirect_to root_path
+        flash[:notice] = 'Bạn chấp nhận đổi.'
+        redirect_to item_path(@target)
       }
     end
   end
@@ -27,7 +31,7 @@ class RelationshipsController < ApplicationController
     @target.withhold!
     respond_to do |format|
       format.html {
-        flash[:notice] = 'khong doi nua.'
+        flash[:notice] = 'Bạn không đổi nữa.'
         redirect_to item_path(@target)
       }
     end
@@ -38,7 +42,7 @@ class RelationshipsController < ApplicationController
     @demander_item.deny!(@target)
     respond_to do |format|
       format.html {
-        flash[:notice] = 'tu choi.'
+        flash[:notice] = 'Bạn từ chối lời đề nghị'
         redirect_to root_path
       }
     end

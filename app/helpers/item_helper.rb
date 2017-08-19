@@ -3,6 +3,18 @@ module ItemHelper
     request.path_info.include?("user") and request.path_info.include?("comments")
   end
 
+  def is_accepted? item
+    if item.relationships.present?
+      return item.relationships.first.status == "accepted"
+    else
+      false
+    end
+  end
+
+  def exchangeable? item
+    !owner?(item.user) and item.relationships.blank? and item.reverse_relationships.blank?
+  end
+
   def status item
     content_tag(:div, "", class: "action") do
       if item.relationships.present?
@@ -24,8 +36,8 @@ module ItemHelper
       if item.demander_items.present?
         form_for(Relationship.new, url: {controller: 'relationships', action: "accept"}) do |f|
           capture do
-            concat (f.hidden_field(:demander_id, value: item.id))
-            concat (f.hidden_field(:granter_id, value: item.demander_items.first.id[0]))
+            concat (f.hidden_field(:demander_id, value: item.demander_items.first.id))
+            concat (f.hidden_field(:granter_id, value: item.id))
           end +
           button_tag("", type: "submit", class: "btn btn-success accept") do
             content_tag(:i, "", class: "fa fa-long-arrow-right")

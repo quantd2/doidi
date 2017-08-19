@@ -1,6 +1,19 @@
-- unless current_page?(new_item_path)
-  = link_to "Đăng đồ", new_item_path, class: "btn btn-primary group-creation-btn"
-
-h4
-  | Những đồ được quan tâm nhất
-ol.hot-polls-list
+.action align="center"
+  - unless current_page?(new_item_path)
+    = link_to "Đăng đồ", new_item_path, class: "btn btn-primary group-creation-btn"
+hr
+  .well
+    p Hướng dẫn:
+    i.fa.fa-long-arrow-right
+    |: Đang có đề nghị đổi món đồ.
+    br
+    i.fa.fa-exchange
+    |: Hai bên đã chấp nhận đổi.
+    br
+    button.btn.btn-success.accept
+      i.fa.fa-long-arrow-right
+    |: Bạn chấp nhận đổi, hai bên sẽ thấy số điện thoại của nhau.
+    br
+    button.btn.btn-danger.deny
+      i.fa.fa-times
+    |: Bạn từ chối hoặc rút lại đề nghị đổi.

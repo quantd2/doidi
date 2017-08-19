@@ -4,7 +4,7 @@
 section.search-results
   header
     h3
-      | Danh sách những món đồ cần đổi
+      | Danh sách những món cần đổi
   ol.list-group
     - @items.each do |item|
       li.list-group-item.clearfix
@@ -25,7 +25,7 @@ section.search-results
               = puts item.relationships
             .action
               - if !owner?(item.user) and item.relationships.blank? and item.reverse_relationships.blank?
-                = link_to "Muốn đổi", new_relationship_path(granter_id: item.id), class: "btn btn-primary"
+                = link_to "Muốn đổi", new_relationship_path(relationship: { granter_id: item.id }), class: "btn btn-primary"
             .guest-image
               = render partial: "items/guest_image", locals: {size: "thumb", item: item}    
             

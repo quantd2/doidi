@@ -5,43 +5,42 @@
     .col-xs-5.host
       = link_to @item.image.large.url, 'data-fancybox': "gallery", class: 'fancybox' do
         = image_tag(@item.image.medium.url, class: "img-responsive")
-        
     .col-xs-2.status align="center"
       = status @item
     .col-xs-5.guest-image align="right"
       = render partial: "items/guest_image", locals: {size: "medium", item: @item}
-
+    
   .details
     b = @item.name
     p = @item.description
-
-  / - if owner? @item.user
-  /   .action
-  /     = link_to "Sửa", edit_item_path(@item), class: "btn btn-primary"
-  /     = render "del_modal", item: @item
-  /     
-  /     .row
-  /       .col-md-6
-  /         article.panel.panel-primary
-  /           header.panel-heading
-  /             h4
-  /               |  Chủ sở hữu 
-  /           section.panel-body
-  /             .row
-  /               .col-md-6
-  /                 .form-group
-  /                   label.sr-only[for="name"]
-  /                     | name
-  /                   input.form-control[type="text" name="name" value="#{@item.user.name}"]
-  /               .col-md-6
-  /                 .form-group
-  /                   label.sr-only[for="phone"]
-  /                     | phone
-  /                   .input-group
-  /                     .input-group-addon
-  /                       i.glyphicon.glyphicon-phone
-  /                     input.form-control[type="text" name="phone" value="0933346442"]
-      
+  .item-action
+    - if owner? @item.user
+      = link_to "Sửa", edit_item_path(@item), class: "btn btn-primary"
+      = render "del_modal", item: @item
+    - if exchangeable? @item
+      = link_to "Muốn đổi", new_relationship_path(relationship: { granter_id: @item.id }), class: "btn btn-primary"
+  br
+  - if is_accepted? @item
+    article.panel.panel-success
+      header.panel-heading
+        h4
+          | Thông tin người muốn đổi với bạn
+      section.panel-body
+        .row
+          .col-sm-6
+            .form-group
+              label.sr-only[for="name"]
+                | name
+              input.form-control[type="text" name="name" value="#{@item.user.name}"]
+          .col-sm-6
+            .form-group
+              label.sr-only[for="phone"]
+                | phone
+              .input-group
+                .input-group-addon
+                  i.glyphicon.glyphicon-phone
+                input.form-control[type="text" name="phone" value="0933346442"]
+        
   hr
   = render "comments/form", cached: true
   hr
