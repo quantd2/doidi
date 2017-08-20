@@ -3,7 +3,7 @@
 .row
   .col-sm-8
     section#contact
-      h3 Cám ơn bạn đã dành thời gian cho chọn đi.
+      h3 Cám ơn bạn đã dành thời gian cho đổi đi.
       = simple_form_for @feedback_message, validate: true do |f|
         = f.input :name, label: false, placeholder: "tên", validate: true
         = f.input :email, label: false, placeholder: "hộp thư", validate: true
@@ -17,5 +17,5 @@
       strong Vui lòng gửi lời nhắn về:
       ul
         li Lỗi về vận hành
-        li Các ý tưởng cho chọn đi
-        li Mọi thứ về chọn đi
+        li Các ý tưởng cho đổi đi
+        li Mọi thứ về đổi đi
