@@ -1,0 +1,19 @@
+h3 All locations
+ol.locations-list
+  table class="table table-striped"
+    thead
+      tr
+        th Region
+        th City
+        th District
+        th Action
+    tbody
+    - @locations.each do |location|
+      tr
+        td = location.region
+        td = location.city
+        td = location.district
+        td = link_to "Edit", edit_admin_location_path(location)
+        td = link_to "Remove", admin_location_path(location), method: :delete, data: {confirm: "Are you sure?"}
+= link_to 'New Location', new_admin_location_path
+= paginate @locations

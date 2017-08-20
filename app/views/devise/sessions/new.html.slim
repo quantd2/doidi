@@ -1,9 +1,13 @@
 h2
   | Đăng nhập
 
-= simple_form_for(resource, as: resource_name, url: session_path(resource_name), validate: true) do |f|
-  = f.input :email, label: false, placeholder: "Hộp thư"
-  = f.input :password, label: false, placeholder:  "Mật khẩu"
-  = f.input :remember_me, label: "Lưu tài khoản", as: :boolean
-  = f.button :submit, "Đăng nhập", class: "btn-success"
-= render "devise/shared/links"
+.row
+  .col-sm-6
+    = simple_form_for(resource, as: resource_name, url: session_path(resource_name), validate: true) do |f|
+      = f.input :email, label: false, placeholder: "Hộp thư"
+      = f.input :password, label: false, placeholder:  "Mật khẩu"
+      = f.input :remember_me, label: "Lưu tài khoản", as: :boolean
+      = f.button :submit, "Đăng nhập", class: "btn-success"
+    = render "devise/shared/links"
+  .col-sm-6
+    = render "devise/shared/policy" 

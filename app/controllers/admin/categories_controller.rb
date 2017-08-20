@@ -39,7 +39,7 @@ class Admin::CategoriesController < ApplicationController
   def destroy
     @category = Category.find_by_id(params[:id])
     @category.destroy
-    redirect_back fallback_location: :back, notice: "Xoá đồ thành công."
+    redirect_back fallback_location: :back, notice: "Category was successfully destroyed."
   end
 
   private

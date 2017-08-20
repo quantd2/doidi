@@ -27,19 +27,27 @@
           | Thông tin người muốn đổi với bạn
       section.panel-body
         .row
-          .col-sm-6
+          .col-sm-4
             .form-group
               label.sr-only[for="name"]
                 | name
               input.form-control[type="text" name="name" value="#{@item.user.name}"]
-          .col-sm-6
+          .col-sm-4
             .form-group
               label.sr-only[for="phone"]
                 | phone
               .input-group
                 .input-group-addon
                   i.glyphicon.glyphicon-phone
-                input.form-control[type="text" name="phone" value="0933346442"]
+                input.form-control[type="text" name="phone" value="#{@item.user.phone}"]
+          .col-sm-4
+            .form-group
+              label.sr-only[for="email"]
+                | email
+              .input-group
+                .input-group-addon
+                  i.glyphicon.glyphicon-email
+                input.form-control[type="text" name="email" value="#{@item.user.email}"]
         
   hr
   = render "comments/form", cached: true

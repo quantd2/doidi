@@ -14,7 +14,6 @@ Rails.application.routes.draw do
   end
 
   resources :feedback_messages
-  resources :categories
   resources :comments
   resources :items
 
@@ -24,7 +23,6 @@ Rails.application.routes.draw do
   end
 
   resources :relationships, only: :new
-
   match 'relationship', to: 'relationships#demand', via: :post
   match 'accept_relationship', to: 'relationships#accept', via: :post
   match 'deny_relationship', to: 'relationships#deny', via: :delete
@@ -36,6 +34,7 @@ Rails.application.routes.draw do
     resources :comments
     resources :users
     resources :categories
+    resources :locations
     # authenticate :user, lambda { |user| user.admin == true } do
     #   mount Sidekiq::Web, at: '/sidekiq'
     # end

@@ -21,4 +21,5 @@ $(document).ready(function() {
 	$(".fancybox").fancybox({
 		errorTpl : '<div class="fancybox-error"><p>There is no image for this option<p></div>'
 	});
+
 });

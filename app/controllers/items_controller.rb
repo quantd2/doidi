@@ -46,7 +46,7 @@ class ItemsController < ApplicationController
     # Categorization.create!(item_id: item_params[:id], category_id: item_params[:category_id])
     if @item.save
       Categorization.create!(item_id: @item.id, category_id: item_params[:category_id])
-      redirect_to url_for(:controller => :welcome, :action => :index), notice: "Tạo thành công nhóm chọn."
+      redirect_to url_for(:controller => :welcome, :action => :index), notice: "Tạo thành công món đồ."
     else
       render :new
     end
@@ -60,7 +60,7 @@ class ItemsController < ApplicationController
         Categorization.find_by_item_id(@item.id).update_attribute(:category_id, item_params[:category_id])
         format.html {
           redirect_to @item
-          flash[:notice] = 'Item was successfully updated.' }
+          flash[:notice] = 'Sửa thành công món đồ.' }
         format.json { render :show, status: :ok, location: @item }
       else
         format.html { render :edit }
@@ -74,7 +74,7 @@ class ItemsController < ApplicationController
   def destroy
     @item.destroy
     respond_to do |format|
-      format.html { redirect_to root_path, notice: 'Item was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Xoá món đồ thành công.' }
       format.json { head :no_content }
     end
   end
