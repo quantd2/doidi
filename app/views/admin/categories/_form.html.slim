@@ -1,5 +1,5 @@
 = simple_form_for ([:admin, @category]) do |f|
-  - if category.errors.any?
+  - if @category.errors.any?
     = render "shared/error_messages", resource: @category
   = f.hidden_field :parent_id
   = f.input :name, label: false, placeholder: "category name"

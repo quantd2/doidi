@@ -16,7 +16,7 @@
  *= require bootstrap-social
  *= require common
  *= require header
- *= require nested_categories
+ *= require nested_resources
  *= require components-font-awesome
  *= require form
  *= require comments
@@ -24,4 +24,5 @@
  *= require welcome
  *= require item_show
  *= require side
+ *= require search
  */

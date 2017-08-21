@@ -1,0 +1,10 @@
+.location
+  span.name
+    = location.name 
+  span.actions
+    |   
+    = link_to "Create Sub", new_admin_location_path(parent_id: location)
+    |  | 
+    = link_to "Edit", edit_admin_location_path(location)
+    |  | 
+    = link_to "Destroy", admin_location_path(location), data: {confirm: "Are you sure?"}, :method => :delete

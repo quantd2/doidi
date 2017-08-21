@@ -1,7 +1,6 @@
 = simple_form_for ([:admin, @location]) do |f|
   - if @location.errors.any?
     = render "shared/error_messages", resource: @location
-  = f.input :region, label: false, placeholder: "region"
-  = f.input :city, label: false, placeholder: "city"
-  = f.input :district, label: false, placeholder: "district"
+  = f.hidden_field :parent_id
+  = f.input :name, label: false, placeholder: "location name"
   = f.button :submit, "Submit", class: "btn-success"

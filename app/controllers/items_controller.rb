@@ -42,10 +42,8 @@ class ItemsController < ApplicationController
   # POST /items
   # POST /items.json
   def create
-    @item = current_user.items.build(item_params.slice(:name, :description, :image))
-    # Categorization.create!(item_id: item_params[:id], category_id: item_params[:category_id])
+    @item = current_user.items.build item_params
     if @item.save
-      Categorization.create!(item_id: @item.id, category_id: item_params[:category_id])
       redirect_to url_for(:controller => :welcome, :action => :index), notice: "Tạo thành công món đồ."
     else
       render :new
@@ -56,8 +54,7 @@ class ItemsController < ApplicationController
   # PATCH/PUT /items/1.json
   def update
     respond_to do |format|
-      if @item.update(item_params.reject {|k,v| k == "category_id"})
-        Categorization.find_by_item_id(@item.id).update_attribute(:category_id, item_params[:category_id])
+      if @item.update(item_params)
         format.html {
           redirect_to @item
           flash[:notice] = 'Sửa thành công món đồ.' }
@@ -88,7 +85,7 @@ class ItemsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def item_params
-    params.require(:item).permit(:name, :description, :image, :category_id)
+    params.require(:item).permit(:name, :description, :image, :category_id, :location_id)
   end
 
   def find_owner

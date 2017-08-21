@@ -1,19 +1,16 @@
 h3 All locations
-ol.locations-list
-  table class="table table-striped"
-    thead
-      tr
-        th Region
-        th City
-        th District
-        th Action
-    tbody
-    - @locations.each do |location|
-      tr
-        td = location.region
-        td = location.city
-        td = location.district
-        td = link_to "Edit", edit_admin_location_path(location)
-        td = link_to "Remove", admin_location_path(location), method: :delete, data: {confirm: "Are you sure?"}
-= link_to 'New Location', new_admin_location_path
+= nested_resources @locations.arrange(:order => :created_at)
+/ ol.categories-list
+/   table class="table table-striped"
+/     thead
+/       tr
+/         th Name
+/         th Action
+/     tbody
+/     - @categories.each do |category|
+/       tr
+/         td = category.name
+/         td = link_to "Delete", admin_category_path(category), method: :delete, data: { confirm: "Bạn có muốn xoá '#{category.name}' không?" }
+
+= link_to 'New location', new_admin_location_path
 = paginate @locations

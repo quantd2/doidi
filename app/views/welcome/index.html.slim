@@ -1,6 +1,9 @@
 - provide(:title, 'Những món đồ hiện muốn đổi')
 - meta_description "Những món đồ cần đổi ở TP.Hồ Chí Minh."
 
+section.search-box
+  = render "search"
+
 section.search-results
   header
     h3
@@ -20,6 +23,9 @@ section.search-results
                 |  bởi 
                 b.owner
                   = link_to item.user.name, user_items_path(user_id: item.user.id)
+              small.location
+                |  | 
+                = item.location.name
             .status
               = status item
               = puts item.relationships

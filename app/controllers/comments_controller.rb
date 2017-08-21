@@ -1,10 +1,10 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
   before_action :correct_user, only: [:destroy, :update]
+  before_action :find_owner, only: :index
 
   def index
-    @item.find_by_id(params[:item_id])
-    @comments = @item.comments.page params[:page]
+    @comments = @user.comments.page params[:page]
   end
 
   def create
@@ -58,5 +58,13 @@ class CommentsController < ApplicationController
   def correct_user
     @comment = current_user.comments.find_by_id(params[:id])
     redirect_to root_path if @comment.nil?
+  end
+
+  def find_owner
+  @user = User.find(user_params)
+  end
+
+  def user_params
+    params.require(:user_id)
   end
 end

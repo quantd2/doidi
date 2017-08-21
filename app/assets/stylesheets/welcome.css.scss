@@ -1,10 +1,17 @@
 .list-group-item {
-
+  small {
+    color: gray;
+  }
   .dated {
     position: absolute;
-    top: 0px;
+    top: 3px;
     right: 0px;
-    color: gray;
+  }
+  @media (max-width: 33.75em) {
+    .dated {
+      top: 2em;
+      left: 0em;
+    }
   }
 
   .description {

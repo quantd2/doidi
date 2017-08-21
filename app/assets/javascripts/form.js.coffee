@@ -44,14 +44,8 @@ ready = ->
       alert 'This browser does not support FileReader.'
     return
 
-  # $("a.fancybox").fancybox()
-  #   openEffect	: 'none'
-	# 	closeEffect	: 'none'
-  #   # closeBtn: false
-  #   # helpers:
-  #   #   title: type: 'inside'
-  #   #   buttons: {}
-  #   # return
+
+
   return
 
 $(document).ready(ready)

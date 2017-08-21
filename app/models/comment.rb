@@ -1,6 +1,4 @@
 class Comment < ApplicationRecord
-  include Common
-
   belongs_to :user
   belongs_to :item
 

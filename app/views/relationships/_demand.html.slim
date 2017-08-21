@@ -13,7 +13,7 @@ my-items
             .action
               = form_for Relationship.new, url: { action: "demand" } do |f|
                 = f.hidden_field :demander_id, value: item.id
-                = f.hidden_field :granter_id, value: params[:granter_id]
+                = f.hidden_field :granter_id, value: params[:relationship][:granter_id]
                 = f.submit "Chọn đổi", class: "btn btn-success"
 - else
   h3 Bạn không có món nào cùng loại để đổi.

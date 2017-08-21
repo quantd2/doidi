@@ -1,12 +1,10 @@
 class Item < ApplicationRecord
-  include Common
+  include Filterable
 
   belongs_to :user
   belongs_to :location
+  belongs_to :category
   has_many :comments
-  has_many :categorizations
-  has_many :categories, through: :categorizations
-  accepts_nested_attributes_for :categorizations
   mount_uploader :image, ImageUploader
 
   default_scope {order(:created_at => :desc)}
@@ -63,6 +61,26 @@ class Item < ApplicationRecord
     if self.reverse_relationships.present?
       errors.add(:reverse_relationships, message: MESSAGE)
       raise Exception.new MESSAGE
+    end
+  end
+
+  scope :location, -> (location_id) { where(location_id: (get_children_id Location, location_id)) }
+  scope :category, -> (category_id) { where(category_id: (get_children_id Category, category_id)) }
+
+  def self.get_children_id class_name, id
+    loc = class_name.find_by_id(id)
+    return(loc.children.present? ? loc.subtree_ids : id)
+  end
+
+  include PgSearch
+  pg_search_scope :search, against: [:name, :description],
+    ignoring: :accents
+
+  def self.text_search(query)
+    if query.present?
+      search(query)
+    else
+      self.all
     end
   end
 end

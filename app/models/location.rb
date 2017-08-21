@@ -1,6 +1,8 @@
 class Location < ApplicationRecord
+  include Tree
+
   has_many :items
 
-  validates :city, length: { minimum: 1, maximum: 30 },
-                    presence: true, uniqueness: true
+  validates :name, length: { minimum: 1, maximum: 30 },
+                    presence: true
 end

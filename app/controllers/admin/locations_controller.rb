@@ -11,7 +11,7 @@ class Admin::LocationsController < ApplicationController
   end
 
   def new
-    @location = Location.new
+    @location = Location.new(:parent_id => params[:parent_id])
   end
 
   def create
@@ -45,6 +45,6 @@ class Admin::LocationsController < ApplicationController
   private
 
   def location_params
-    params.require(:location).permit(:district, :city, :region)
+    params.require(:location).permit(:name, :parent_id)
   end
 end

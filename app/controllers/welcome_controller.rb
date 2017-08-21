@@ -2,9 +2,9 @@ class WelcomeController < ApplicationController
   # before_action :authenticate_user!
 
   def index
-    @items = Item.all.page params[:page]
-    # text_preprocessed = strip_accent(params[:query])
-    # @items = Item.text_search(text_preprocessed).includes(:options).page(params[:page])
+    text_preprocessed = strip_accent(filtering_params[:query])
+    @items = Item.text_search(text_preprocessed).page(params[:page])
+    @items = @items.filter(filtering_params.reject { |k,v| k == "query" }).page params[:page]
   end
 
   def about
@@ -30,6 +30,16 @@ class WelcomeController < ApplicationController
       result = query.gsub(/[Đ]/, 'D')
     else
       ""
+    end
+  end
+
+  private
+
+  def filtering_params
+    if params[:filtering]
+      return params.require(:filtering).permit(:query, :location, :category)
+    else
+      params.merge(filtering: {query: "", location: "", category: ""}).require(:filtering).permit(:query, :location, :category)
     end
   end
 end
