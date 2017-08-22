@@ -3,10 +3,9 @@ class RelationshipsController < ApplicationController
   before_action :set_target
 
   def new
-    @items = current_user.items.joins(:categorizations).where('items.id NOT IN (SELECT granter_id FROM relationships)
-                                      AND items.id NOT IN (SELECT demander_id FROM relationships)')
-                                      .where('categorizations.category_id = ?', @target.category_ids[0])
-                                      .page params[:page]
+    @items = current_user.items.demandable(0)
+                               .where('category_id = ?', @target.category_id)
+                               .page params[:page]
 
   end
 

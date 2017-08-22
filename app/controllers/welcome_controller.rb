@@ -3,7 +3,7 @@ class WelcomeController < ApplicationController
 
   def index
     text_preprocessed = strip_accent(filtering_params[:query])
-    @items = Item.text_search(text_preprocessed).page(params[:page])
+    @items = Item.text_search(text_preprocessed).page params[:page]
     @items = @items.filter(filtering_params.reject { |k,v| k == "query" }).page params[:page]
   end
 
@@ -37,9 +37,9 @@ class WelcomeController < ApplicationController
 
   def filtering_params
     if params[:filtering]
-      return params.require(:filtering).permit(:query, :location, :category)
+      return params.require(:filtering).permit(:demandable, :query, :location, :category)
     else
-      params.merge(filtering: {query: "", location: "", category: ""}).require(:filtering).permit(:query, :location, :category)
+      params.merge(filtering: {query: "", location: "", category: "", demandable: ""}).require(:filtering).permit(:query, :location, :category, :demandable)
     end
   end
 end

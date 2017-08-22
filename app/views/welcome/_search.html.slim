@@ -7,13 +7,17 @@
   br
   .form-group
     .row
-      .col-xs-6
+      .col-xs-4
         = f.select(:category, Category.all.collect {|p| [ p.name, p.id ] },
                 {include_blank: 'Tất cả thể loại', selected:(get_last_search :category)},
                 {class:"form-control category"})
-      .col-xs-6          
+      .col-xs-4          
         = f.select(:location, Location.all.collect {|p| [ p.name_for_selects, p.id ] },
             {include_blank: 'Tất cả các nơi', selected:(get_last_search :location)},
+            {class:"form-control location"})
+      .col-xs-4     
+        = f.select(:demandable, [['Chưa thương lượng', 0], ['Tất cả', ""]],
+            {include_blank: false, selected:(get_last_search :demandable)},
             {class:"form-control location"})
   
             

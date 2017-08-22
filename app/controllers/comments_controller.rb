@@ -15,8 +15,8 @@ class CommentsController < ApplicationController
         if @comment.errors.present?
           redirect_back fallback_location: :back, notice: "Vui lòng thử lại sau!"
         else
-          #@comment.notify_other_commenters
-          redirect_to(item_path(@comment.item, :view => "comments"))
+          @comment.notify_other_commenters
+          redirect_to item_path(@comment.item)
         end
       end
       format.js

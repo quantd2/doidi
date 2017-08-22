@@ -7,10 +7,10 @@
   | ");
   | $("#show_comment_#{@comment.parent_id}").find("form").remove();
 - else
-  | $("[id*='item']").siblings("ul").prepend('
+  | $(".item-show").find("ul:first").prepend('
   i.fa.fa-spinner.fa-spin
   | ');
-  |  $("[id*='item']").siblings("ul").prepend("
+  |  $(".item-show").find("ul:first").prepend("
   = escape_javascript(render partial: 'comments/comment', locals: { comment: @comment } )
   | ");
-  | $("[id*='item']").siblings("form").find("#comment_body").val('');
+  | $(".item-show").find("form").find("#comment_body").val('');

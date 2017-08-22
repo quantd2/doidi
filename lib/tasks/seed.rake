@@ -14,6 +14,12 @@ namespace :db do
                   phone: "555555552",
                   password: "foobar",
                   password_confirmation: "foobar")
+
+    User.create!( email: "quan3@gmail.com",
+                  name: "quan3",
+                  phone: "555555553",
+                  password: "foobar",
+                  password_confirmation: "foobar")
   end
 
   task populate_location: :environment do
@@ -80,4 +86,26 @@ namespace :db do
     Category.create!(name: "Đồ em bé")
   end
 
+  task populate_item: :environment do
+    users = User.all.limit 20
+    3.times do
+      users.each do |user|
+        100.times do
+          user.items.create!( name: Faker::Book.title,
+                              description: Faker::ChuckNorris.fact,
+                              location: Location.offset(rand(Location.count)).first,
+                              category: Category.offset(rand(Category.count)).first)
+        end
+      end
+    end
+  end
+
+  task populate_relationship: :environment do
+    items = Item.all
+    g1_items = items[0..50]
+    g2_items = items[51..101]
+    for i in 0..50
+      g1_items[i].demand! g2_items[i]
+    end
+  end
 end

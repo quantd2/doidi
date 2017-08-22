@@ -8,6 +8,8 @@ module SearchHelper
         return params[:filtering][:location]
       when :query
         return params[:filtering][:query]
+      when :demandable
+        return params[:filtering][:demandable]
       else
         nil
       end

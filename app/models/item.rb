@@ -2,8 +2,11 @@ class Item < ApplicationRecord
   include Filterable
 
   belongs_to :user
+  validates :user, presence: true
   belongs_to :location
+  validates :location, presence: true
   belongs_to :category
+  validates :category, presence: true
   has_many :comments
   mount_uploader :image, ImageUploader
 
@@ -64,8 +67,10 @@ class Item < ApplicationRecord
     end
   end
 
-  scope :location, -> (location_id) { where(location_id: (get_children_id Location, location_id)) }
-  scope :category, -> (category_id) { where(category_id: (get_children_id Category, category_id)) }
+  scope :location,   -> (location_id) { where(location_id: (get_children_id Location, location_id)) }
+  scope :category,   -> (category_id) { where(category_id: (get_children_id Category, category_id)) }
+  scope :demandable, -> (demandable)  { where('items.id NOT IN (SELECT granter_id FROM relationships)
+                                      AND items.id NOT IN (SELECT demander_id FROM relationships)') if demandable.present? }
 
   def self.get_children_id class_name, id
     loc = class_name.find_by_id(id)

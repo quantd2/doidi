@@ -22,7 +22,7 @@ module ApplicationHelper
 
   def link_to_reply(name, comment)
     id = comment.id
-    fields = simple_form_for Comment.new(parent_id: id), validate: true, remote: true do |builder|
+    fields = simple_form_for Comment.new(parent_id: id), validate: true, remote: signed_in? do |builder|
       render("comments/comment_fields", f: builder)
     end
     link_to(name, '#', class: "add_comment", data: {id: id, fields: fields.gsub("\n", "")})

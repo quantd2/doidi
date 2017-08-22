@@ -29,7 +29,7 @@
               = link_to "Xoá", "#{}", class: "intent"
               span.confirmation
                 | Bạn có chắc không? 
-                = link_to "Có", comment_path(comment), class: "confirm", method: :delete, remote: true
+                = link_to "Có", comment_path(comment), class: "confirm", method: :delete, remote: signed_in?
                 = link_to "Không", "#{}", class: "cancel"
               
     ul.comment-list.sub-comments

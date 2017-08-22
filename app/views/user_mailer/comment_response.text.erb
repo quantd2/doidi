@@ -1,0 +1,12 @@
+Có người đã bình luận trên món đồ hoặc lời bình của bạn trên doidi. Đây là nội dung:
+
+---
+From: <%= raw @comment.user.name %>
+
+<%= raw @comment.content %>
+---
+
+Để xem chi tiết hơn: <%= item_url(@comment.item) %>
+
+To unsubscribe from future emails from RailsCasts, just click this link:
+<%= unsubscribe_url(@user.generated_unsubscribe_token) %>
