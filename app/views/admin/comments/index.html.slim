@@ -1,0 +1,15 @@
+h3 All Comments
+ol.comment-list
+  table class="table table-striped"
+    thead
+      tr
+        th Body
+        th Author
+        th Action
+    tbody
+    - @comments.each do |comment|
+      tr
+        td = comment.body
+        td = comment.user.name
+        td = link_to "Delete", admin_comment_path(comment), method: :delete, data: { confirm: "Bạn có muốn xoá comment không?" } 
+= paginate @comments

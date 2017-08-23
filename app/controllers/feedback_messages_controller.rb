@@ -13,7 +13,6 @@ class FeedbackMessagesController < ApplicationController
     else
       @feedback_message = FeedbackMessage.new(feedback_params)
       if @feedback_message.save
-        UserMailer.feedback(@feedback_message).deliver
         redirect_to root_url, :notice => "Cám ơn lời nhắn của bạn."
       else
         render :new

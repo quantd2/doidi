@@ -1,7 +1,9 @@
 h3 Tất cả đồ của #{@user.name}
-ol.item-list
+ol.list-group
+  = paginate @items
   - @items.each do |item|
-    - cache_if current_user, item do
-      = render item
+    li.list-group-item.clearfix
+      - cache_if current_user, item do
+        = render item
 
-= paginate @items
+  = paginate @items

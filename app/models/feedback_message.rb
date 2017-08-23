@@ -5,7 +5,7 @@ class FeedbackMessage < ApplicationRecord
   after_commit :send_feedback, on: :create
 
   def send_feedback
-    UserMailer.feedback(self).deliver_later!
+    UserMailer.feedback(self).deliver_later
   end
 
 end

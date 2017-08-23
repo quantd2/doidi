@@ -35,9 +35,9 @@ Rails.application.routes.draw do
     resources :users
     resources :categories
     resources :locations
-    # authenticate :user, lambda { |user| user.admin == true } do
-    #   mount Sidekiq::Web, at: '/sidekiq'
-    # end
+    authenticate :user, lambda { |user| user.admin == true } do
+      mount Sidekiq::Web, at: '/sidekiq'
+    end
   end
 
 end

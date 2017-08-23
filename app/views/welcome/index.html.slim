@@ -9,16 +9,20 @@ section.search-results
     h3
       | Danh sách những món cần đổi
   ol.list-group
+    = paginate @items
     - @items.each do |item|
       li.list-group-item.clearfix
         .media id="item_#{item.id}"
           .media-left
-            = link_to image_tag(item.image.thumb.url), item_path(item), class: 'media-object'
+            - if !item.image_processing
+              = link_to image_tag(item.image.thumb.url), item_path(item), class: 'media-object'
+            - else
+              p Processing... 
           .media-body
             .media-heading
               b = link_to item.name, item_path(item)
               small.dated
-                | Lúc 
+                |  Lúc 
                 = item.created_at.to_date
                 |  bởi 
                 b.owner
@@ -34,4 +38,4 @@ section.search-results
             .guest-image
               = render partial: "items/guest_image", locals: {size: "thumb", item: item}    
             
-= paginate @items
+    = paginate @items

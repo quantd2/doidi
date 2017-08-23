@@ -11,10 +11,4 @@ class Admin::UsersController < ApplicationController
     redirect_back fallback_location: :back, notice: "Xoá user thành công."
   end
 
-  private
-
-  def user_params
-    params.require(:user).permit(:name, :email)
-  end
-
 end

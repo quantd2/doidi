@@ -20,6 +20,15 @@ namespace :db do
                   phone: "555555553",
                   password: "foobar",
                   password_confirmation: "foobar")
+
+    97.times do
+      password = "foobar"
+      User.create!( email: Faker::Internet.email,
+                    phone: Faker::PhoneNumber.phone_number,
+                    name: Faker::Name.name,
+                    password: password,
+                    password_confirmation: password)
+    end
   end
 
   task populate_location: :environment do
@@ -87,15 +96,13 @@ namespace :db do
   end
 
   task populate_item: :environment do
-    users = User.all.limit 20
-    3.times do
+    users = User.all
+    10.times do
       users.each do |user|
-        100.times do
-          user.items.create!( name: Faker::Book.title,
-                              description: Faker::ChuckNorris.fact,
-                              location: Location.offset(rand(Location.count)).first,
-                              category: Category.offset(rand(Category.count)).first)
-        end
+        user.items.create!( name: Faker::Book.title,
+                            description: Faker::ChuckNorris.fact,
+                            location: Location.offset(rand(Location.count)).first,
+                            category: Category.offset(rand(Category.count)).first)
       end
     end
   end

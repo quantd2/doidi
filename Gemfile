@@ -45,11 +45,15 @@ gem 'mini_magick'
 gem 'fog'
 gem 'ancestry'
 gem 'pg_search'
+gem 'sidekiq'
+gem 'carrierwave_backgrounder', :git => 'https://github.com/lardawge/carrierwave_backgrounder.git'
+gem 'sinatra', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'faker'
+  gem 'dotenv-rails'
 end
 
 group :development do

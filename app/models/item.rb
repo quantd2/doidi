@@ -9,6 +9,7 @@ class Item < ApplicationRecord
   validates :category, presence: true
   has_many :comments
   mount_uploader :image, ImageUploader
+  process_in_background :image
 
   default_scope {order(:created_at => :desc)}
 

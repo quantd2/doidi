@@ -1,0 +1,15 @@
+h3 All Items
+ol.items-list
+  table class="table table-striped"
+    thead
+      tr
+        th Name
+        th Description
+        th Action
+    tbody
+    - @items.each do |item|
+      tr
+        td = item.name
+        td = item.description
+        td = link_to "Delete", admin_item_path(item), method: :delete, data: { confirm: "Bạn có muốn xoá '#{item.name}' không?" } 
+= paginate @items

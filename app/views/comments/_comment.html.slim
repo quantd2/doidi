@@ -17,7 +17,7 @@
           - if comment_poll_name_display?
             small.poll
               |  ở 
-              = link_to Item.find_by_id(comment.item_id).name, item_path(Item.find_by_id(comment.item_id))
+              = link_to Item.find_by_id(comment.item_id).name, item_path(Item.find_by_id(comment.item_id), anchor: "show_comment_#{comment.id}")
 
         .entry = comment.body
         .action

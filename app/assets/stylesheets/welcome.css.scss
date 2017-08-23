@@ -1,24 +1,11 @@
 .list-group-item {
-  small {
-    color: gray;
-  }
-  .dated {
-    position: absolute;
-    top: 3px;
-    right: 0px;
-  }
-  @media (max-width: 33.75em) {
-    .dated {
-      top: 2em;
-      left: 0em;
-    }
+
+  .media-heading {
+    text-align:justify;
   }
 
-  .description {
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    margin-bottom: 0px;
+  small {
+    color: gray;
   }
 
   .action {

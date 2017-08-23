@@ -32,7 +32,7 @@ module ItemHelper
   end
 
   def available_action item
-    if owner? item.user and request.env['PATH_INFO'].include?('items')
+    if owner? item.user and request.env['PATH_INFO'].include?(item_path(item))
       if item.demander_items.present?
         form_for(Relationship.new, url: {controller: 'relationships', action: "accept"}) do |f|
           capture do

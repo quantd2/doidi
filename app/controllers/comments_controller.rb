@@ -9,17 +9,14 @@ class CommentsController < ApplicationController
 
   def create
     @comment = current_user.comments.build(comment_params)
-    @comment.save
     respond_to do |format|
-      format.html do
-        if @comment.errors.present?
-          redirect_back fallback_location: :back, notice: "Vui lòng thử lại sau!"
-        else
-          @comment.notify_other_commenters
-          redirect_to item_path(@comment.item)
-        end
+      if @comment.save
+        format.html { redirect_back fallback_location: :back, notice: "Cám ơn lời bình của bạn." }
+        format.js
+      else
+        format.html { redirect_back fallback_location: :back, alert: "Vui lòng thử lại sau."}
+        format.js
       end
-      format.js
     end
   end
 

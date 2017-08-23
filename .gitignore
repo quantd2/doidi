@@ -17,3 +17,9 @@
 .byebug_history
 
 /public/uploads/*
+
+/public/uploads/*
+.env
+dump.*
+/config/prod_env.yml
+/public/assets/*
