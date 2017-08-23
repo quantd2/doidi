@@ -23,14 +23,14 @@ module ItemHelper
     end
   end
 
-  def cancel item
-    button_tag "", {class:"btn btn-danger withhold", 'data-toggle' => "modal", "data-target" => "#cancelModal"} do
+  def withhold item
+    button_tag "", {class:"btn btn-danger withhold", 'data-toggle' => "modal", "data-target" => "#withholdModal"} do
       '<i class="fa fa-times"></i>'.html_safe
     end
   end
 
-  def refuse item
-    button_tag "", {class:"btn btn-danger deny", 'data-toggle' => "modal", "data-target" => "#refuseModal"} do
+  def deny item
+    button_tag "", {class:"btn btn-danger deny", 'data-toggle' => "modal", "data-target" => "#denyModal"} do
       '<i class="fa fa-times"></i>'.html_safe
     end
   end
@@ -44,11 +44,13 @@ module ItemHelper
   def available_action item
     if owner? item.user and request.env['PATH_INFO'].include?(item_path(item))
       if item.demander_items.present?
+        tag(:br) +
         accept(item) +
-        refuse(item)
+        tag(:br) +
+        deny(item)
       elsif item.granter_items.present?
         tag(:br) +
-        cancel(item)
+        withhold(item)
       end
     end
   end
@@ -57,9 +59,9 @@ module ItemHelper
     if owner? item.user and request.env['PATH_INFO'].include?(item_path(item))
       if item.demander_items.present?
         concat render "relationships/accept_modal", item: @item
-        concat render "relationships/refuse_modal", item: @item
+        concat render "relationships/deny_modal", item: @item
       elsif item.granter_items.present?
-        render "relationships/cancel_modal", item: @item
+        render "relationships/withhold_modal", item: @item
       end
     end
   end

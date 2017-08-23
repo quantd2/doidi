@@ -20,33 +20,7 @@
       = link_to "Muốn đổi", new_relationship_path(relationship: { granter_id: @item.id }), class: "btn btn-primary"
   br
   - if @item.is_accepted?
-    article.panel.panel-success
-      header.panel-heading
-        h4
-          | Thông tin người muốn đổi với bạn
-      section.panel-body
-        .row
-          .col-sm-4
-            .form-group
-              label.sr-only[for="name"]
-                | name
-              input.form-control[type="text" name="name" value="#{@item.demander.name}"]
-          .col-sm-4
-            .form-group
-              label.sr-only[for="phone"]
-                | phone
-              .input-group
-                .input-group-addon
-                  i.glyphicon.glyphicon-phone
-                input.form-control[type="text" name="phone" value="#{@item.demander.phone}"]
-          .col-sm-4
-            .form-group
-              label.sr-only[for="email"]
-                | email
-              .input-group
-                .input-group-addon
-                  i.glyphicon.glyphicon-email
-                input.form-control[type="text" name="email" value="#{@item.demander.email}"]
+    = render "exchanger_info", item: @item
         
   hr
   = render "comments/form", cached: true

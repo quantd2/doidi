@@ -16,8 +16,8 @@
             {include_blank: 'Tất cả các nơi', selected:(get_last_search :location)},
             {class:"form-control location"})
       .col-xs-4     
-        = f.select(:demandable, [['Chưa thương lượng', 0], ['Tất cả', ""]],
-            {include_blank: false, selected:(get_last_search :demandable)},
+        = f.select(:demandable, [['Chưa thương lượng', 0]],
+            {include_blank: 'Tất cả', selected:(get_last_search :demandable)},
             {class:"form-control location"})
   
             
