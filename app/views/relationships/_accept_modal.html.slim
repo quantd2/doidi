@@ -1,0 +1,18 @@
+#acceptModal.modal.fade[tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"]
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close[type="button" data-dismiss="modal" aria-hidden="true"]
+          | ×
+        h3#myModalLabel.modal-title
+          | Xác nhận
+      .modal-body
+        h4
+          | Bạn chấp nhận đổi? Nhấn OK hai bạn sẽ thấy thông tin cá nhân cuả nhau để liên lạc.
+      .modal-footer
+        button.btn.btn-default[type="button" data-dismiss="modal"]
+          | Thoát
+          = form_for(Relationship.new, url: {controller: 'relationships', action: "accept"}) do |f|
+            = f.hidden_field(:demander_id, value: item.demander_items.first.id)
+            = f.hidden_field(:granter_id, value: item.id)
+            = f.button :OK, class: "btn btn-success"

@@ -52,6 +52,26 @@ class Item < ApplicationRecord
     reverse_relationships.find_by_demander_id(other_item.id).destroy
   end
 
+  def is_accepted?
+    if relationships.present?
+      return relationships.first.status == "accepted"
+    else
+      false
+    end
+  end
+
+  def demanded?
+    relationships.present?
+  end
+
+  def got_demanded?
+    reverse_relationships.present?
+  end
+
+  def demander
+    demander_items.first.user
+  end
+
   MESSAGE = "Món đồ của bạn đã được đề nghị đổi!"
 
   def check_demanding_limit relationship

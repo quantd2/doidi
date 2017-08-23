@@ -5,8 +5,8 @@ h2 Đăng ký
     = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), validate: true) do |f|
       = devise_error_messages!
       fieldset
-        = f.input :name, label: false, placeholder: "Tên", autofocus: true
-        = f.input :email, label: false, placeholder: "Hộp thư", autofocus: true
+        = f.input :name, label: false, placeholder: "Tên"
+        = f.input :email, label: false, placeholder: "Hộp thư"
         = f.input :phone, label: false, placeholder: "Số điện thoại"
         = f.input :password, label: false, placeholder: "Mật khẩu", autocomplete: "off"
         - if @minimum_password_length

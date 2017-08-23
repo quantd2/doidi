@@ -1,0 +1,18 @@
+#refuseModal.modal.fade[tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"]
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close[type="button" data-dismiss="modal" aria-hidden="true"]
+          | ×
+        h3#myModalLabel.modal-title
+          | Xác nhận
+      .modal-body
+        h4
+          | Bạn không muốn đổi?
+      .modal-footer
+        button.btn.btn-default[type="button" data-dismiss="modal"]
+          | Thoát
+        = link_to "OK", 
+                  deny_relationship_path(id: item.id, relationship: { granter_id: item.demander_item_ids[0] }), 
+                  method: :delete, 
+                  class: "btn btn-danger"

@@ -1,6 +1,7 @@
 - provide(:title, 'Thông tin về đồ')
 - meta_description "Những thông tin cụ thể về món đồ."
 .item-show
+  = available_render @item
   .row
     .col-xs-5.host
       = link_to @item.image.large.url, 'data-fancybox': "gallery", class: 'fancybox' do
@@ -9,18 +10,16 @@
       = status @item
     .col-xs-5.guest-image align="right"
       = render partial: "items/guest_image", locals: {size: "medium", item: @item}
-    
   .details
     b = @item.name
     p = @item.description
   .item-action
     - if owner? @item.user
       = link_to "Sửa", edit_item_path(@item), class: "btn btn-primary"
-      = render "del_modal", item: @item
     - if exchangeable? @item
       = link_to "Muốn đổi", new_relationship_path(relationship: { granter_id: @item.id }), class: "btn btn-primary"
   br
-  - if is_accepted? @item
+  - if @item.is_accepted?
     article.panel.panel-success
       header.panel-heading
         h4
@@ -31,7 +30,7 @@
             .form-group
               label.sr-only[for="name"]
                 | name
-              input.form-control[type="text" name="name" value="#{@item.user.name}"]
+              input.form-control[type="text" name="name" value="#{@item.demander.name}"]
           .col-sm-4
             .form-group
               label.sr-only[for="phone"]
@@ -39,7 +38,7 @@
               .input-group
                 .input-group-addon
                   i.glyphicon.glyphicon-phone
-                input.form-control[type="text" name="phone" value="#{@item.user.phone}"]
+                input.form-control[type="text" name="phone" value="#{@item.demander.phone}"]
           .col-sm-4
             .form-group
               label.sr-only[for="email"]
@@ -47,7 +46,7 @@
               .input-group
                 .input-group-addon
                   i.glyphicon.glyphicon-email
-                input.form-control[type="text" name="email" value="#{@item.user.email}"]
+                input.form-control[type="text" name="email" value="#{@item.demander.email}"]
         
   hr
   = render "comments/form", cached: true

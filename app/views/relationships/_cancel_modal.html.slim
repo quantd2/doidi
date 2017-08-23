@@ -1,0 +1,18 @@
+#cancelModal.modal.fade[tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"]
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close[type="button" data-dismiss="modal" aria-hidden="true"]
+          | ×
+        h3#myModalLabel.modal-title
+          | Xác nhận
+      .modal-body
+        h4
+          | Bạn không muốn đổi?
+      .modal-footer
+        button.btn.btn-default[type="button" data-dismiss="modal"]
+          | Thoát
+        = link_to "OK", 
+                  withhold_relationship_path(relationship: { granter_id: item.id }),
+                  method: :delete, 
+                  class: "btn btn-danger"
