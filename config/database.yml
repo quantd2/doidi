@@ -13,3 +13,12 @@ development:
 test:
   <<: *default
   database: doidi_test
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  database: <%= ENV['DBNAME'] %>
+  pool: 5
+  username: <%= ENV['DBUSERNAME'] %>
+  password: <%= ENV['DBPASS'] %>
