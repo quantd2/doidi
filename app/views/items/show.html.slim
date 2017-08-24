@@ -1,7 +1,7 @@
 - provide(:title, 'Thông tin về đồ')
 - meta_description "Những thông tin cụ thể về món đồ."
+= available_render @item
 .item-show
-  = available_render @item
   .row
     .col-xs-5.host
       = link_to @item.image.large.url, 'data-fancybox': "gallery", class: 'fancybox' do
@@ -19,7 +19,7 @@
     - if exchangeable? @item
       = link_to "Muốn đổi", new_relationship_path(relationship: { granter_id: @item.id }), class: "btn btn-primary"
   br
-  - if @item.is_accepted?
+  - if(@item.is_accepted? and (current_user.email == @item.user.email or current_user.email == @item.demander.email))
     = render "exchanger_info", item: @item
         
   hr

@@ -11,6 +11,24 @@
   </head>
 
   <body>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '269341553563094',
+          xfbml      : true,
+          version    : 'v2.10'
+        });
+        FB.AppEvents.logPageView();
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
     <%= render 'layouts/header' %>
     <div class="container" id="page">
       <% flash.each do |key, value| %>
@@ -29,6 +47,12 @@
         </div>
         <div class="col-sm-4 side">
           <%= render "layouts/side" %>
+          <div
+            class="fb-like"
+            data-share="true"
+            data-width="450"
+            data-show-faces="true">
+          </div>
         </div>
       </div>
       <%= render 'layouts/footer', cache: true %>
