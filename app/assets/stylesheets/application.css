@@ -11,19 +11,7 @@
  * It is generally better to create a new file per style scope.
  *
  *
- *= require_self
- *= require bootstrap-sass-official
- *= require bootstrap-social
- *= require common
- *= require header
- *= require nested_resources
- *= require components-font-awesome
- *= require form
- *= require comments
  *= require fancybox
- *= require welcome
- *= require item_show
- *= require side
- *= require search
- *= require about
+ *= require_tree .
+ *= require_self
  */

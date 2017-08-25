@@ -19,8 +19,9 @@
     - if exchangeable? @item
       = link_to "Muốn đổi", new_relationship_path(relationship: { granter_id: @item.id }), class: "btn btn-primary"
   br
-  - if(@item.is_accepted? and (current_user.email == @item.user.email or current_user.email == @item.demander.email))
-    = render "exchanger_info", item: @item
+  - if current_user
+    - if(@item.is_accepted? and (current_user.email == @item.user.email or current_user.email == @item.demander.email))
+      = render "exchanger_info", item: @item
         
   hr
   = render "comments/form", cached: true

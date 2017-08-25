@@ -1,4 +1,1 @@
-asset 'bootstrap-sass-official'
-asset 'bootstrap-social'
-asset 'components-font-awesome'
 asset 'fancybox'

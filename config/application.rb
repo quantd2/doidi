@@ -25,7 +25,7 @@ module Doidi
     # config.action_controller.page_cache_directory = "#{Rails.root.to_s}/public/deploy"
     config.active_job.queue_adapter = :sidekiq
     config.active_record.schema_format = :sql
-
+    config.sass.load_paths << File.expand_path('../../vendor/assets/bower_components/')
     config.before_configuration do
       env_file = File.join(Rails.root, 'config', 'prod_env.yml')
       YAML.load(File.open(env_file)).each do |key, value|
