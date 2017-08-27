@@ -23,6 +23,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       @user = User.create( email: @identity.email || "" )
       @identity.update_attribute( :user_id, @user.id )
       @user.remote_image_url = @identity.image.gsub('http://','https://')
+      @user.update_attribute(:phone, @identity.phone)
     end
 
     if @user.email.blank? && @identity.email

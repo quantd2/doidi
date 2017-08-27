@@ -7,12 +7,8 @@ module SearchHelper
       when :location
         return params[:filtering][:location]
       when :query
-        puts "************************************"
-        puts params[:filtering][:demandable]
         return params[:filtering][:query]
       when :demandable
-        puts "************************************"
-        puts params[:filtering][:demandable]
         return params[:filtering][:demandable]
       else
         nil
