@@ -7,13 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+
+    <% if content_for?(:head) %>
+      <%= yield(:head) %>
+    <% end %>
   </head>
 
   <body>
     <script>
       window.fbAsyncInit = function() {
         FB.init({
-          appId      : '269341553563094',
+          appId      : '1751237791835314',
           xfbml      : true,
           version    : 'v2.10'
         });
@@ -46,12 +50,6 @@
         </div>
         <div class="col-sm-4 side">
           <%= render "layouts/side" %>
-          <div
-            class="fb-like"
-            data-share="true"
-            data-width="450"
-            data-show-faces="true">
-          </div>
         </div>
       </div>
       <%= render 'layouts/footer', cache: true %>
