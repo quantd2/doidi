@@ -1,0 +1,43 @@
+- provide(:title, 'Thông tin về đồ')
+- meta_description "Những thông tin cụ thể về món đồ."
+- content_for :head do
+  meta[property="og:url" content="https://doidi.com/items/#{@item.id}/"]
+  meta[property="og:type" content="article"]
+  meta[property="og:title" content="#{@item.name}"]
+  meta[property="og:description" content="#{@item.description}"]
+  meta[property="og:image" content="#{@item.image.large.url}"]
+  meta[property="fb:app_id" content="1751237791835314"]
+  
+= available_render @item
+
+.item-show
+  .row
+    .col-xs-5.host
+      = link_to @item.image.large.url, 'data-fancybox': "gallery", class: 'fancybox' do
+        = image_tag(@item.image.medium.url, class: "img-responsive")
+    .col-xs-2.status align="center"
+      = status @item
+    .col-xs-5.guest-image align="right"
+      = render partial: "items/guest_image", locals: {size: "medium", item: @item}
+  .details
+    b = @item.name
+    p = @item.description
+    / .fb-share-button[data-href="http://7344db05.ngrok.io/items/999" data-layout="button_count" data-size="small" data-mobile-iframe="true"]
+    /   a.fb-xfbml-parse-ignore[target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F7344db05.ngrok.io%2Fitems%2F999&amp;src=sdkpreparse"]
+    /     | Share
+    .fb-like[data-share="true" data-width="450" data-show-faces="true"]
+  .item-action
+    - if owner? @item.user
+      = link_to "Sửa", edit_item_path(@item), class: "btn btn-primary"
+    - if exchangeable? @item
+      = link_to "Muốn đổi", new_relationship_path(relationship: { granter_id: @item.id }), class: "btn btn-primary"
+  br
+  - if current_user
+    - if(@item.is_accepted? and (current_user.email == @item.user.email or current_user.email == @item.demander.email))
+      = render "exchanger_info", item: @item
+        
+  hr
+  = render "comments/form", cached: true
+  hr
+  ul.comment-list
+    = render @comments

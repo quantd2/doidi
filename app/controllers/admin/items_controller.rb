@@ -12,10 +12,11 @@ class Admin::ItemsController < ApplicationController
   end
 
   def edit
-    @item = current_user.items.find params[:id]
+    @item = Item.find params[:id]
   end
 
   def update
+    @item = Item.find params[:id]
     respond_to do |format|
       if @item.update(item_params)
         format.html {
