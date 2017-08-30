@@ -24,9 +24,11 @@ header.navbar.navbar-inverse[role="navigation"]
               span class="caret"
             ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu"
               li 
-                 = link_to "Đồ của tôi", user_items_path(user_id: current_user.id) 
+                = link_to "Đồ của tôi", user_items_path(user_id: current_user.id) 
               li
-                 = link_to "Các bình luận của tôi", user_comments_path(user_id: current_user.id)
+                = link_to "Các bình luận của tôi", user_comments_path(user_id: current_user.id)
+              li
+                = link_to "Sửa thông tin cá nhân", edit_user_registration_path
               li class="divider"
               li
                 = link_to "Thoát", destroy_user_session_path, method: :delete
