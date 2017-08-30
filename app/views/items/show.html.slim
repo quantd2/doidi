@@ -6,7 +6,7 @@
   meta[property="og:title" content="#{@item.name}"]
   meta[property="og:description" content="#{@item.description}"]
   meta[property="og:image" content="#{@item.image.large.url}"]
-  meta[property="fb:app_id" content="1751237791835314"]
+  meta[property="fb:app_id" content="#{ENV['FACEBOOK_APP_ID']}"]
   
 = available_render @item
 
