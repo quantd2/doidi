@@ -58,6 +58,10 @@ namespace :db do
     Location.create!( name: "Huyện Nhà Bè", parent_id: hcm_id )
     Location.create!( name: "Huyện Cần Giờ", parent_id: hcm_id )
 
+    Location.create!( name: "Cần Thơ" )
+    Location.create!( name: "Đà Nẵng" )
+    Location.create!( name: "Hải Phòng" )
+
     hn_id = Location.create!( name: "Hà Nội" ).id
     Location.create!( name: "Quận Ba Đình", parent_id: hn_id )
     Location.create!( name: "Quận Hoàn Kiếm", parent_id: hn_id )
