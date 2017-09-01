@@ -57,7 +57,7 @@ en:
     sign_up: Sign Up
     sign_in: Sign In
   side:
-    post: Post
+    post: Post item
     guide: "Guide:"
     proposing: There's a suggest to exchange.
     accepted: Both sides accept to exchange.
@@ -111,9 +111,9 @@ en:
       content: "message"
   item:
     create:
-      notice: "Post successfully."
+      notice: "Post item successfully."
     update:
-      notice: "Update successfully."
+      notice: "Update item successfully."
     index: "All the stuff of"
     at: At
     by: by
