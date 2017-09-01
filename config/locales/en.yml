@@ -72,7 +72,7 @@ en:
       email: Email
       phone: Phone
       password: Password
-      create_account: Create account"
+      create_account: Create account
       minium_char: minimum character
       new_password: new password
       currrent_password: current password
