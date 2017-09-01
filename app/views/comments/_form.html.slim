@@ -1,5 +1,5 @@
 = simple_form_for @comment, remote: signed_in?, validate: true do |f|
   = f.hidden_field :parent_id
   = f.hidden_field :item_id
-  = f.input :body, placeholder: "Để lại lời bình", label: false, validate: true
+  = f.input :body, placeholder: t('comment.form.content'), label: false, validate: true
   = f.button :submit, value: "Gửi", class: "btn-success"

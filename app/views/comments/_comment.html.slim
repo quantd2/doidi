@@ -11,26 +11,26 @@
           b.author 
             = link_to comment.author.name, user_items_path(user_id: comment.author.id)
           small.time
-            |  gửi  
+            |  #{t('comment.send')}    
             = time_ago_in_words(comment.created_at) 
-            |  trước
+            |  #{t('comment.ago')} 
           - if comment_item_name_display?
-            small.poll
-              |  ở 
+            small.item
+              |  #{t('comment.in')} 
               = link_to Item.find_by_id(comment.item_id).name, item_path(Item.find_by_id(comment.item_id), anchor: "show_comment_#{comment.id}")
 
         .entry = comment.body
         .action
-          small.reply = link_to_reply "Trả lời", comment
+          small.reply = link_to_reply t('comment.reply'), comment
           - if owner? comment.user
             small.edit
-              = link_to "Sửa", edit_comment_path(comment), :remote => true
+              = link_to t('common.edit'), edit_comment_path(comment), remote: signed_in?
             small.delete
-              = link_to "Xoá", "#{}", class: "intent"
+              = link_to t('common.delete'), "#{}", class: "intent"
               span.confirmation
-                | Bạn có chắc không? 
-                = link_to "Có", comment_path(comment), class: "confirm", method: :delete, remote: signed_in?
-                = link_to "Không", "#{}", class: "cancel"
+                | #{t('common.confirm')} 
+                = link_to t('common.positive'), comment_path(comment), class: "confirm", method: :delete, remote: signed_in?
+                = link_to t('common.negative'), "#{}", class: "cancel"
               
     ul.comment-list.sub-comments
       = render partial: 'comments/comment', collection: comment.children

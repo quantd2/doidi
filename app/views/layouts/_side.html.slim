@@ -1,21 +1,21 @@
 .action align="center"
   - unless current_page?(new_item_path)
-    = link_to "Đăng đồ", new_item_path, class: "btn btn-primary group-creation-btn"
+    = link_to t('side.post'), new_item_path, class: "btn btn-primary group-creation-btn"
 hr
   .well
-    p Hướng dẫn:
+    p = t('side.guide')
     i.fa.fa-long-arrow-right
-    |: Đang có đề nghị đổi món đồ.
+    |: #{t('side.proposing')}
     br
     i.fa.fa-exchange
-    |: Hai bên đã chấp nhận đổi.
+    |: #{t('side.accepted')}
     br
-    | -- Ở hai trạng thái trên, hai bên không thể đề nghị và được đề nghị đổi với người khác nữa. 
+    | -- #{t('side.explaining')} 
     br
     button.btn.btn-success.accept
       i.fa.fa-long-arrow-right
-    |: Bạn chấp nhận đổi, hai bên sẽ thấy số điện thoại hoặc email của nhau.
+    |: #{t('side.accept')}
     br
     button.btn.btn-danger.deny
       i.fa.fa-times
-    |: Bạn từ chối hoặc rút lại đề nghị đổi.
+    |: #{t('side.deny')}

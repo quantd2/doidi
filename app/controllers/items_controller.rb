@@ -44,7 +44,7 @@ class ItemsController < ApplicationController
   def create
     @item = current_user.items.build item_params
     if @item.save
-      redirect_to url_for(:controller => :welcome, :action => :index), notice: "Tạo thành công món đồ."
+      redirect_to url_for(:controller => :welcome, :action => :index), notice: t('item.create.notice')
     else
       render :new
     end
@@ -57,7 +57,7 @@ class ItemsController < ApplicationController
       if @item.update(item_params)
         format.html {
           redirect_to @item
-          flash[:notice] = 'Sửa thành công món đồ.' }
+          flash[:notice] = t('item.update.notice') }
         format.json { render :show, status: :ok, location: @item }
       else
         format.html { render :edit }

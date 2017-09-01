@@ -1,6 +1,6 @@
 my-items
 - if @items.present?
-  h3 Chọn một trong những món đồ của bạn để đổi.
+  h3 = t('relationship.demand.header')
   ol.list-group
     - @items.each do |item|
       li.list-group-item.clearfix
@@ -14,8 +14,8 @@ my-items
               = form_for Relationship.new, url: { action: "demand" } do |f|
                 = f.hidden_field :demander_id, value: item.id
                 = f.hidden_field :granter_id, value: params[:relationship][:granter_id]
-                = f.submit "Chọn đổi", class: "btn btn-success"
+                = f.submit t('relationship.demand.submit'), class: "btn btn-success"
 - else
-  h3 Bạn không có món nào cùng loại để đổi.
+  h3 = t('relationship.demand.header_no_stuff')
     
 = paginate @items

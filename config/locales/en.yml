@@ -20,4 +20,130 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  error:
+    form: "The form has: %{number} error."
+  common:
+    confirm: "Are you sure?"
+    edit: "Edit"
+    delete: "Delete"
+    positive: "Yes"
+    negative: "No"
+  welcome:
+    header: List of stuff that need to be exchanged
+    title: Stuff need to be exchanged
+    meta_description: Stuff to exchange, find yourself a interesting stuff.
+    search:
+      submit: Search
+      all_categories: All kinds
+      every_where: Every where
+      available: Available
+      all_status: All status
+  about:
+    header: About doi di
+    info: You get too many stuff and rarely use it, come and exchange yours. Now you can exchange books and children stuff.
+    header_contact: Contact
+    link_contact: feedback
+    contact: If you have any comments, suggestions, questions, etc. I'd love to hear them! Please use the __feedback__ page or send an email to feedback@doidi.com.
+    policy:
+      header: Policy
+      content: 'All the content you upload will be reviewed by admin. We will delete those breaching our rule without notice. There is just one rule: "just be nice :D"'
+  header:
+    feedback: Feedback
+    about: About doi di
+    my_stuff: My stuff
+    my_comment: My comments
+    edit_my_info: Update personal info
+    log_out: Log Out
+    sign_up: Sign Up
+    sign_in: Sign In
+  side:
+    post: Post
+    guide: "Guide:"
+    proposing: There's a suggest to exchange.
+    accepted: Both sides accept to exchange.
+    explaining: In both status above, both side can't suggest any other to exchange, on one can't suggest them to exchange neither.
+    accept: You accept the offer, both will see each other's info like email or phone.
+    deny: You deny or withhold the offer.
+  user:
+    form:
+      sign_up: Sign up
+      edit: Edit
+      name: Name
+      email: Email
+      phone: Phone
+      password: Password
+      create_account: Create account"
+      minium_char: minimum character
+      new_password: new password
+      currrent_password: current password
+      info_current_password: We need your current password to confirm the change"Chúng tôi cần mật khẩu hiện tại của bạn để xác minh"
+      info_edit_pass: Let it blank if you don't want new password
+      update: Update
+      cancel_account: Cancel account
+      unhappy: "Unhappy :( ?"
+      back: "back"
+      log_in: "Log in"
+      remember_me: "remember me"
+    policy:
+      common: "Doi di protect your privacy."
+      email: "Email (madatory) will be used to log in and keep you update about comment response."
+      phone: "Phone (optional) only display when both sides agree to swap. If not existed, email will display instead."
+  feedback:
+    create:
+      thanks: "Thanks for your feedback."
+    title: "Feedback"
+    meta_description: "Send your feedback to doidi here."
+    thanks: "thanks for your time."
+    content: "message"
+    send: "Send"
+    feedback_about: "Please send feedback about:"
+    error_recommend_msg: "Functionality issue"
+    idea_recommend_msg: "Ideas for doi di"
+    anything_recommend_msg: "Everything about doi di"
+  comment:
+    reply: "Reply"
+    cancel: "Cancel"
+    send: "send"
+    ago: "ago"
+    in: "in"
+    index: "Comments of"
+    form:
+      content: "message"
+  item:
+    create:
+      notice: "Post successfully."
+    update:
+      notice: "Update successfully."
+    index: "All the stuff of"
+    at: At
+    by: by
+    new: "Post item"
+    show:
+      title: "Information about the item"
+      meta_description: "Details about the item need to be exchanged."
+      want_exchange: "Want exchange"
+      exchange:
+        header: "Information about the trader"
+    form:
+      name: "Name"
+      description: "Description"
+      location: "Location"
+      category: "Category Thể loại -- Note: item need to be the same category to be exchangeable"
+      tip:
+        image: "With image your item get more attention."
+        description: "Write down some line like: status of the item, what do you want to swap it for."
+        note: "Only same kind items are exchangeable."
+  relationship:
+    demand:
+      header: Get one of your items out to propose.
+      submit: Choose
+      header_no_stuff: You got no item in that category to propose.
+    modal:
+      header: Confirmation
+      cancel: Cancel
+      accept_modal:
+        body: You agree to exchange for %{name}? Click OK both sides will see each other info to contact.
+      deny_modal:
+        body: You don't want %{name}?
+      withhold_modal:
+        body: You don't want %{name}?

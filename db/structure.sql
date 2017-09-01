@@ -371,7 +371,8 @@ CREATE TABLE users (
     image character varying,
     admin boolean DEFAULT false,
     phone character varying,
-    name character varying
+    name character varying,
+    language character varying DEFAULT 'vi'::character varying
 );
 
 
@@ -695,6 +696,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170821075206'),
 ('20170821080756'),
 ('20170821140244'),
-('20170823031553');
+('20170823031553'),
+('20170830151245');
 
 

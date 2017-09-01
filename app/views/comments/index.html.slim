@@ -1,4 +1,4 @@
-h3 Các lời bình của #{@user.name}
+h3 = t('comment.index') + " #{@user.name}"
 ol.comment-list
   - @comments.each do |comment|
     - cache_if current_user, comment do

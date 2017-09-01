@@ -1,4 +1,4 @@
-h3 Tất cả đồ của #{@user.name}
+h3 = t('item.index') + " #{@user.name}"
 ol.list-group
   = paginate @items
   - @items.each do |item|

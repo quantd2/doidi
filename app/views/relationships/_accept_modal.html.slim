@@ -5,13 +5,13 @@
         button.close[type="button" data-dismiss="modal" aria-hidden="true"]
           | ×
         h3#myModalLabel.modal-title
-          | Xác nhận
+          | #{t('relationship.modal.header')}
       .modal-body
         h4
-          | Bạn chấp nhận đổi lấy #{item.demander_items.first.name}? Nhấn OK hai bạn sẽ thấy thông tin cá nhân cuả nhau để liên lạc.
+          | #{t('relationship.modal.accept_modal.body', name: item.demander_items.first.name)}
       .modal-footer
         button.btn.btn-default[type="button" data-dismiss="modal"]
-          | Thoát
+          | #{t('relationship.modal.cancel')}
           = form_for(Relationship.new, url: {controller: 'relationships', action: "accept"}) do |f|
             = f.hidden_field(:demander_id, value: item.demander_items.first.id)
             = f.hidden_field(:granter_id, value: item.id)

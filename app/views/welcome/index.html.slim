@@ -1,41 +1,15 @@
-- provide(:title, 'Những món đồ hiện muốn đổi')
-- meta_description "Những món đồ cần đổi ở TP.Hồ Chí Minh."
+- provide(:title, t('welcome.title'))
+- meta_description t('welcome.meta_description')
 
 section.search-box
   = render "search"
 
 section.search-results
   header
-    h3
-      | Danh sách những món cần đổi
+    h3 = t('welcome.header')
   ol.list-group
     = paginate @items
     - @items.each do |item|
       li.list-group-item.clearfix
-        .media id="item_#{item.id}"
-          .media-left
-            - if !item.image_processing
-              = link_to image_tag(item.image.thumb.url), item_path(item), class: 'media-object'
-            - else
-              p Processing... 
-          .media-body
-            .media-heading
-              b = link_to item.name, item_path(item)
-              small.dated
-                |  Lúc 
-                = item.created_at.to_date
-                |  bởi 
-                b.owner
-                  = link_to item.user.name, user_items_path(user_id: item.user.id)
-              small.location
-                |  | 
-                = item.location.name
-            .status
-              = status item
-            .action
-              - if !owner?(item.user) and item.relationships.blank? and item.reverse_relationships.blank?
-                = link_to "Muốn đổi", new_relationship_path(relationship: { granter_id: item.id }), class: "btn btn-primary"
-            .guest-image
-              = render partial: "items/guest_image", locals: {size: "thumb", item: item}    
-            
+        = render item 
     = paginate @items

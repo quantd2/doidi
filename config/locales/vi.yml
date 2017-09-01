@@ -1,5 +1,133 @@
 ---
 vi:
+  error:
+    form: "Tờ đơn có: %{number} lỗi."
+  common:
+    confirm: "Bạn có chắc không?"
+    edit: "Sửa"
+    delete: "Xoá"
+    positive: "Có"
+    negative: "Không"
+  welcome:
+    header: Danh sách những món cần đổi
+    title: Những món đồ hiện muốn đổi
+    meta_description: Những món đồ cần đổi, hãy tìm cho mình món yêu thích.
+    search:
+      submit: Tìm
+      all_categories: Tất cả thể loại
+      every_where: Tất cả các nơi
+      available: Chưa thương lượng
+      all_status: Tất cả trạng thái
+  about:
+    header: "Về đổi đi"
+    info: Bạn có nhiều đồ đạc và không muốn lãng phí, hãy đến với đổi đi để  đổi với những người bạn có cùng ý tưởng. Hiện tại các bạn có thể đăng sách và đồ em bé.
+    header_contact: Liên hệ
+    link_contact: phản hồi
+    contact: Nếu bạn có bất cứ thắc mắc, gợi ý... Tôi rất muốn nghe! Vui lòng vào trang __phản hồi__ hoặc gửi email cho feedback@doidi.com
+    policy:
+      header: Điều khoản sử dụng
+      content: 'Những nội dung các bạn đưa lên sẽ được admin coi lại nếu vi phạm nội quy sẽ bị xoá mà không cần báo trước. Nội quy chỉ có một: "just be nice" :D'
+  header:
+    feedback: "Phản hồi"
+    about: Về đổi đi
+    my_stuff: Đồ của tôi
+    my_comment: Các bình luận của tôi
+    edit_my_info: Sửa thông tin cá nhân
+    log_out: Thoát
+    sign_up: Đăng ký
+    sign_in: Đăng nhập
+  side:
+    post: Đăng đồ
+    guide: "Hướng dẫn:"
+    proposing: Đang có đề nghị đổi món đồ.
+    accepted: Hai bên đã chấp nhận đổi.
+    explaining: Ở hai trạng thái trên, hai bên không thể đề nghị và được đề nghị đổi với người khác nữa.
+    accept: Bạn chấp nhận đổi, hai bên sẽ thấy số điện thoại hoặc email của nhau.
+    deny: Bạn từ chối hoặc rút lại đề nghị đổi.
+  user:
+    form:
+      sign_up: "Đăng ký"
+      edit: "Sửa đổi"
+      name: "Tên"
+      email: "Hộp thư"
+      phone: "Số điện thoại"
+      password: "Mật khẩu"
+      create_account: "Tạo tài khoản"
+      minium_char: "ký tự tối thiểu"
+      new_password: "Mật khẩu mới"
+      currrent_password: "Mật khẩu hiện tại"
+      info_current_password: "Chúng tôi cần mật khẩu hiện tại của bạn để xác minh"
+      info_edit_pass: "Để trống nếu bạn không muốn đổi mật khẩu mới"
+      update: "Cập nhật"
+      cancel_account: "Xoá tài khoản"
+      unhappy: "Không thích nữa :( ?"
+      back: "Trở lại"
+      log_in: "Đăng nhập"
+      remember_me: "Lưu tài khoản"
+    policy:
+      common: "Đổi đi hoàn toàn bảo mật thông tin cá nhân của bạn."
+      email: "Email (bắt buộc) sẽ được dùng để  đăng nhập và thông báo khi có người trả lời bình luận của bạn."
+      phone: "Số điện thoại (không bắt buộc) chỉ hiển thị khi hai bên đồng ý trao đổi. Nếu bạn không điền số điện thoại, email sẽ được dùng thay thế."
+  feedback:
+    create:
+      thanks: "Cám ơn lời nhắn của bạn."
+    title: "Phản hồi"
+    meta_description: "Gửi những thắc mắc của các bạn tại đây."
+    thanks: "Cám ơn bạn đã dành thời gian cho đổi đi."
+    content: "Lời nhắn"
+    send: "Gửi"
+    feedback_about: "Vui lòng gửi lời nhắn về:"
+    error_recommend_msg: "Lỗi về vận hành"
+    idea_recommend_msg: "Các ý tưởng cho đổi đi"
+    anything_recommend_msg: "Mọi thứ về đổi đi"
+  comment:
+    reply: "Trả lời"
+    cancel: "Thoát"
+    send: "gửi"
+    ago: "trước"
+    in: "ở"
+    index: "Các lời bình của"
+    form:
+      content: "Để lại lời bình"
+  item:
+    create:
+      notice: "Tạo thành công món đồ."
+    update:
+      notice: "Sửa thành công món đồ."
+    index: "Tất cả đồ của"
+    at: Lúc
+    by: bởi
+    new: "Đăng đồ"
+    show:
+      title: "Thông tin về đồ"
+      meta_description: "Những thông tin cụ thể về món đồ."
+      want_exchange: "Muốn đổi"
+      exchange:
+        header: "Thông tin người muốn đổi với bạn"
+    form:
+      name: "Tên món đồ"
+      description: "Miêu tả"
+      location: "Vị trí"
+      category: "Thể loại -- Lưu ý: chỉ cùng loại mới có thể đổi"
+      tip:
+        image: "Nếu có thể bạn hãy đính kèm hình ảnh của món đồ để làm tăng cơ hội nhận biết."
+        description: "Viết vài dòng ngắn trong mục miêu tả như: tình trạng món đồ, bạn muốn trao đổi với món nào cụ thể."
+        note: "Và lưu ý chỉ những món đồ cùng loại mới có thể đổi cho nhau."
+  relationship:
+    demand:
+      header: Chọn một trong những món đồ của bạn để đổi.
+      submit: Chọn đổi
+      header_no_stuff: Bạn không có món nào cùng loại để đổi.
+    modal:
+      header: Xác nhận
+      cancel: Thoát
+      accept_modal:
+        body: Bạn chấp nhận đổi lấy %{name}? Nhấn OK hai bạn sẽ thấy thông tin cá nhân cuả nhau để liên lạc.
+      deny_modal:
+        body: Bạn không muốn đổi lấy %{name}?
+      withhold_modal:
+        body: Bạn không muốn đổi lấy %{name}?
+
   activerecord:
     errors:
       messages:

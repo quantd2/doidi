@@ -8,9 +8,9 @@
     .media-heading
       b = link_to item.name, item_path(item)
       small.dated
-        |  Lúc 
+        |  #{t('item.at')} 
         = item.created_at.to_date
-        |  bởi 
+        |  #{t('item.by')} 
         b.owner
           = link_to item.user.name, user_items_path(user_id: item.user.id)
       small.location
@@ -20,7 +20,6 @@
       = status item
     .action
       - if !owner?(item.user) and item.relationships.blank? and item.reverse_relationships.blank?
-        = link_to "Muốn đổi", new_relationship_path(relationship: { granter_id: item.id }), class: "btn btn-primary"
+        = link_to t('item.show.want_exchange'), new_relationship_path(relationship: { granter_id: item.id }), class: "btn btn-primary"
     .guest-image
       = render partial: "items/guest_image", locals: {size: "thumb", item: item}
-    

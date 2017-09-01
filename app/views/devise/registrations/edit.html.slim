@@ -1,34 +1,37 @@
-h2 Sửa đổi #{resource_name.to_s.humanize}
+h2 = t("user.form.edit") + " #{resource_name.to_s.humanize}"
 .row
   .col-sm-6
     = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
       = devise_error_messages!
       fieldset
-        = f.input :name, label: false, placeholder: "Tên"
+        = f.input :name, label: false, placeholder: t('user.form.name')
         = f.file_field :image, id: "file_#{f.object.object_id}", style: "visibility: hidden;"
         #previewImage
         a href="#" onclick="document.getElementById('file_#{f.object.object_id}').click(); return false;"
           i class="fa fa-picture-o fa-2x" aria-hidden="true"
-        = f.input :email, label: false, placeholder: "Hộp thư"
-        = f.input :phone, label: false, placeholder: "Số điện thoại"
-        i để trống nếu bạn không muốn đổi mật khẩu mới
-        = f.input :password, label: false, placeholder: "Mật khẩu mới", autocomplete: "off"
+        = f.input :email, label: false, placeholder: t('user.form.email')
+        = f.input :phone, label: false, placeholder: t('user.form.phone')
+        = f.select(:language, [['English', 'en'], ['Vietnamese', 'vi']],
+                              {include_blank: false, include_hidden: false, selected: @user.language},
+                              {multiple: false, class:"form-control form-group"})
+        i = t('user.form.info_edit_pass')
+        = f.input :password, label: false, placeholder: t('user.form.new_password'), autocomplete: "off"
         - if @minimum_password_length
           em
             | (
             = @minimum_password_length
-            |  ký tự tối thiểu)
-        i chúng tôi cần mật khẩu hiện tại của bạn để xác minh
-        = f.input :current_password, label: false, placeholder: "Mật khẩu hiện tại", autocomplete: "off"
+            |  t('user.form.minium_char'))
+        i = t('user.form.info_current_password')
+        = f.input :current_password, label: false, placeholder: t('user.form.currrent_password'), autocomplete: "off"
         .actions
-          = f.submit "Cập nhật", class: "btn btn-success"
+          = f.submit t('user.form.update'), class: "btn btn-success"
     
     h3
-      | Xoá tài khoản
+      = t('user.form.cancel_account')
     p
-      | Không thích nữa :( ?
-      = button_to "Xoá tài khoản", registration_path(resource_name), class: "btn btn-danger", data: { confirm: "Bạn chắc chứ?" }, method: :delete
-    = link_to "Back", :back
+      = t('user.form.unhappy')
+      = button_to t('user.form.cancel_account'), registration_path(resource_name), class: "btn btn-danger", data: { confirm: t('common.confirm') }, method: :delete
+    = link_to t('user.form.back'), :back
 
   .col-sm-6
     = render "devise/shared/policy" 

@@ -1,9 +1,7 @@
 - if resource.errors.any?
   #error_explanation
     .alert.alert-danger
-      |  Tờ đơn có: 
-      = resource.errors.size 
-      |  lỗi. 
+      = t('error.form', number: resource.errors.size)
     ul
       - resource.errors.full_messages.each do |msg|
         li

@@ -5,13 +5,13 @@
         button.close[type="button" data-dismiss="modal" aria-hidden="true"]
           | ×
         h3#myModalLabel.modal-title
-          | Xác nhận
+          | #{t('relationship.modal.header')}
       .modal-body
         h4
-          | Bạn không muốn đổi lấy #{item.demander_items.first.name}?
+          | #{t('relationship.modal.deny_modal.body', name: item.demander_items.first.name)}
       .modal-footer
         button.btn.btn-default[type="button" data-dismiss="modal"]
-          | Thoát
+          | #{t('relationship.modal.cancel')}
         = link_to "OK", 
                   deny_relationship_path(id: item.id, relationship: { granter_id: item.demander_item_ids[0] }), 
                   method: :delete, 

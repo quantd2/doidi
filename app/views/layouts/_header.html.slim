@@ -11,9 +11,9 @@ header.navbar.navbar-inverse[role="navigation"]
     .collapse.navbar-collapse.navbar-ex1-collapse
       ul.nav.navbar-nav.navbar-right
         li
-          = link_to "Phản hồi", new_feedback_message_path
+          = link_to t('header.feedback'), new_feedback_message_path
         li
-          = link_to "Về đổi đi", welcome_about_path
+          = link_to t('header.about'), welcome_about_path
         - if signed_in?
           - if admin?
             li 
@@ -24,16 +24,16 @@ header.navbar.navbar-inverse[role="navigation"]
               span class="caret"
             ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu"
               li 
-                = link_to "Đồ của tôi", user_items_path(user_id: current_user.id) 
+                = link_to t('header.my_stuff'), user_items_path(user_id: current_user.id) 
               li
-                = link_to "Các bình luận của tôi", user_comments_path(user_id: current_user.id)
+                = link_to t('header.my_comment'), user_comments_path(user_id: current_user.id)
               li
-                = link_to "Sửa thông tin cá nhân", edit_user_registration_path
+                = link_to t('header.edit_my_info'), edit_user_registration_path
               li class="divider"
               li
-                = link_to "Thoát", destroy_user_session_path, method: :delete
+                = link_to t('header.log_out'), destroy_user_session_path, method: :delete
         - else
           li
-            = link_to "Đăng ký", new_user_registration_path
+            = link_to t('header.sign_up'), new_user_registration_path
           li
-            = link_to "Đăng nhập", new_user_session_path
+            = link_to t('header.sign_in'), new_user_session_path

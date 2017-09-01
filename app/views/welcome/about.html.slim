@@ -1,18 +1,10 @@
 - provide(:title, 'Về đổi đi')
 - meta_description "Thông tin chi tiết về đổi đi."
-h3 Về đổi đi
+h3 = t('about.header')
 .about
-  p
-    | Bạn có nhiều đồ đạc và không muốn lãng phí, hãy đến với đổi đi để  đổi với những người bạn có cùng ý tưởng. Hiện tại các bạn có thể đăng sách và đồ em bé.
-         
-  h3 Liên hệ
-  p
-    | Nếu bạn có bất cứ thắc mắc, gợi ý... Tôi rất muốn nghe! Vui lòng vào trang 
-    = link_to "phản hồi ", new_feedback_message_path 
-    | hoặc gửi email cho feedback@doidi.com
-    
-  h3 Điều khoản sử dụng
-  p
-    | Những nội dung các bạn đưa lên sẽ được admin coi lại nếu vi phạm nội quy sẽ bị xoá mà không cần báo trước. 
-    | Nội quy chỉ có một: "just be nice" :D
+  p = t('about.info')
+  h3 = t('about.header_contact')
+  p = string_with_link t('about.contact'), new_feedback_message_path
+  h3 = t('about.policy.header')
+  p = t('about.policy.content')
       

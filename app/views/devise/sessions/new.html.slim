@@ -1,9 +1,8 @@
-h2
-  | Đăng nhập
+h2 = t('user.form.log_in')
   
 = simple_form_for(resource, as: resource_name, url: session_path(resource_name), validate: true) do |f|
-  = f.input :email, label: false, placeholder: "Hộp thư"
-  = f.input :password, label: false, placeholder:  "Mật khẩu"
-  = f.input :remember_me, label: "Lưu tài khoản", as: :boolean
-  = f.button :submit, "Đăng nhập", class: "btn-success"
+  = f.input :email, label: false, placeholder: t('user.form.email')
+  = f.input :password, label: false, placeholder: t('user.form.password')
+  = f.input :remember_me, label: t('user.form.remember_me'), as: :boolean
+  = f.button :submit, t('user.form.log_in'), class: "btn-success"
 = render "devise/shared/links"
