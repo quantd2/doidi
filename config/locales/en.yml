@@ -76,7 +76,7 @@ en:
       minium_char: minimum character
       new_password: new password
       currrent_password: current password
-      info_current_password: We need your current password to confirm the change"Chúng tôi cần mật khẩu hiện tại của bạn để xác minh"
+      info_current_password: We need your current password to confirm the change
       info_edit_pass: Let it blank if you don't want new password
       update: Update
       cancel_account: Cancel account
