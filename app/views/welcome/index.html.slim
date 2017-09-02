@@ -1,5 +1,8 @@
 - provide(:title, t('welcome.title'))
 - meta_description t('welcome.meta_description')
+- content_for :head do
+  meta[property="og:url" content="https://doidi.com/"]
+  meta[property="og:image" content="https://s3-ap-southeast-1.amazonaws.com/doidi/uploads/about_doidi.jpg"]
 
 section.search-box
   = render "search"

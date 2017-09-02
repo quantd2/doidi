@@ -1,10 +1,13 @@
 - provide(:title, 'Về đổi đi')
 - meta_description "Thông tin chi tiết về đổi đi."
-h3 = t('about.header')
-.about
-  p = t('about.info')
-  h3 = t('about.header_contact')
-  p = string_with_link t('about.contact'), new_feedback_message_path
-  h3 = t('about.policy.header')
-  p = t('about.policy.content')
-      
+
+.row.about
+  .col-sm-8
+    h3 = t('about.header')
+    p = t('about.info')
+    h3 = t('about.header_contact')
+    p = string_with_link t('about.contact'), new_feedback_message_path
+    h3 = t('about.policy.header')
+    p = t('about.policy.content')
+  .col-sm-4
+    = image_tag "https://s3-ap-southeast-1.amazonaws.com/doidi/uploads/about_doidi.jpg", class: "img-responsive"
