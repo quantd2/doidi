@@ -1,7 +1,7 @@
 h2 = t('user.form.log_in')
   
 = simple_form_for(resource, as: resource_name, url: session_path(resource_name), validate: true) do |f|
-  = f.input :email, label: false, placeholder: t('user.form.email')
+  = f.input :email, label: false, placeholder: t('user.form.email'), validate: {presence: true} 
   = f.input :password, label: false, placeholder: t('user.form.password')
   = f.input :remember_me, label: t('user.form.remember_me'), as: :boolean
   = f.button :submit, t('user.form.log_in'), class: "btn-success"

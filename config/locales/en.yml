@@ -128,7 +128,7 @@ en:
       name: "Name"
       description: "Description"
       location: "Location"
-      category: "Category Thể loại -- Note: item need to be the same category to be exchangeable"
+      category: "Category -- Note: item need to be the same category to be exchangeable"
       tip:
         image: "With image your item get more attention."
         description: "Write down some line like: status of the item, what do you want to swap it for."

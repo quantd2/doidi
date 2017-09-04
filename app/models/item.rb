@@ -4,9 +4,9 @@ class Item < ApplicationRecord
   belongs_to :user
   validates :user, presence: true
   belongs_to :location
-  validates :location, presence: true
+  validates :location_id, presence: true
   belongs_to :category
-  validates :category, presence: true
+  validates :category_id, presence: true
   has_many :comments
   mount_uploader :image, ImageUploader
   process_in_background :image
@@ -29,7 +29,7 @@ class Item < ApplicationRecord
   validates :name, length: { minimum: 1, maximum: 50 }, presence: true
   validates :description, length: { minimum: 0, maximum: 1000 }
 
-  paginates_per 10
+  paginates_per 20
 
   def demanding?(other_item)
     relationships.find_by_granter_id(other_item.id)

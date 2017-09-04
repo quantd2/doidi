@@ -2,6 +2,7 @@
 vi:
   error:
     form: "Tờ đơn có: %{number} lỗi."
+    image_format: 'Chỉ hỗ trợ các loại:'
   common:
     confirm: "Bạn có chắc không?"
     edit: "Sửa"

@@ -2,11 +2,11 @@ h2 = t('user.form.sign_up')
 
 .row
   .col-sm-6
-    = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), validate: true) do |f|
+    = simple_form_for resource, as: resource_name, url: registration_path(resource_name), validate: true do |f|
       = devise_error_messages!
       fieldset
-        = f.input :name, label: false, placeholder: t('user.form.name')
-        = f.input :email, label: false, placeholder: t('user.form.email')
+        = f.input :name, label: false, placeholder: t('user.form.name'), validate: {presence: true}
+        = f.input :email, label: false, placeholder: t('user.form.email'), validate: {presence: true}
         = f.input :phone, label: false, placeholder: t('user.form.phone')
         = f.select(:language, [['English', 'en'], ['Vietnamese', 'vi']],
                               {include_blank: false, include_hidden: false, selected: @user.language},

@@ -12,6 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require rails.validations
+//= require client_side_select2
+//= require rails.validations.simple_form
 //= require bootstrap-sprockets
 //= require fancybox
 //= require_tree .
@@ -21,4 +24,5 @@ $(document).ready(function() {
 	$(".fancybox").fancybox({
 		errorTpl : '<div class="fancybox-error"><p>There is no image for this option<p></div>'
 	});
+	$("form").enableClientSideValidations();
 });

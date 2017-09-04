@@ -2,11 +2,11 @@
   - if @item.errors.any?
     = render "shared/error_messages", resource: @item
   fieldset
-    = f.input :name, label: false, placeholder: t('item.form.name'), validate: {presence: true}
+    = f.input :name, label: false, placeholder: t('item.form.name')
     = f.input :description, label: false, placeholder: t('item.form.description')
     = f.select(:location_id, Location.all.collect {|p| [ p.name_for_selects, p.id ]},
                           {include_blank: false, include_hidden: false, selected: @item.location_id, prompt: t('item.form.location')},
-                          {multiple: false, class:"form-control form-group", validate: true})
+                          {multiple: false, class:"form-control form-group", "data-select2-select": true, "data-select2-validate": true})
  
     = f.select(:category_id, Category.all.collect {|p| [ p.name_for_selects, p.id ]}, 
                           {include_blank: false, include_hidden: false, selected: @item.category_id, prompt: t('item.form.category')},
