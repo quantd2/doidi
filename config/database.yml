@@ -19,6 +19,6 @@ production:
   encoding: unicode
   host: localhost
   database: <%= ENV['DBNAME'] %>
-  pool: 5
+  pool: 7
   username: <%= ENV['DBUSERNAME'] %>
   password: <%= ENV['DBPASS'] %>

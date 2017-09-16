@@ -100,7 +100,7 @@ class Item < ApplicationRecord
 
   include PgSearch
   pg_search_scope :search, against: [:name, :description],
-    ignoring: :accents
+                  ignoring: :accents
 
   def self.text_search(query)
     if query.present?

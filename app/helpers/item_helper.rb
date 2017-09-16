@@ -57,6 +57,7 @@ module ItemHelper
 
   def available_render item
     if owner? item.user and request.env['PATH_INFO'].include?(item_path(item))
+      concat render "items/del_modal", item: @item
       if item.demander_items.present?
         concat render "relationships/accept_modal", item: @item
         concat render "relationships/deny_modal", item: @item

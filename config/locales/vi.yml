@@ -95,6 +95,8 @@ vi:
       notice: "Tạo thành công món đồ."
     update:
       notice: "Sửa thành công món đồ."
+    delete:
+      notice: "Xoá thành công."
     index: "Tất cả đồ của"
     at: Lúc
     by: bởi
@@ -105,6 +107,8 @@ vi:
       want_exchange: "Muốn đổi"
       exchange:
         header: "Thông tin người muốn đổi với bạn"
+      modal:
+        delete: "Bạn có muốn xoá món đồ: %{name}?"
     form:
       name: "Tên món đồ"
       description: "Miêu tả"

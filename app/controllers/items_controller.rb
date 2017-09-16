@@ -71,7 +71,7 @@ class ItemsController < ApplicationController
   def destroy
     @item.destroy
     respond_to do |format|
-      format.html { redirect_to root_path, notice: 'Xoá món đồ thành công.' }
+      format.html { redirect_to root_path, notice: t('item.delete.notice') }
       format.json { head :no_content }
     end
   end

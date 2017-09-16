@@ -114,6 +114,8 @@ en:
       notice: "Post item successfully."
     update:
       notice: "Update item successfully."
+    delete:
+      notice: "Delete item successfully."
     index: "All the stuff of"
     at: At
     by: by
@@ -124,6 +126,8 @@ en:
       want_exchange: "Want exchange"
       exchange:
         header: "Information about the trader"
+      modal:
+        delete: "Do want to delete: %{name}?"
     form:
       name: "Name"
       description: "Description"
